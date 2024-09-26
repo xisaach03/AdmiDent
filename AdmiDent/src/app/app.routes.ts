@@ -1,3 +1,11 @@
 import { Routes } from '@angular/router';
+import { GalleryComponent } from './components/paths/home/gallery/gallery.component';
+import { HomeComponent } from './components/paths/home/home.component';
 
-export const routes: Routes = [];
+
+export const routes: Routes = [
+    {path : 'home'  , component : HomeComponent , children : [
+        { path : 'gallery' , component: GalleryComponent}
+    ]
+    }
+];
