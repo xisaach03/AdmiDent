@@ -1,0 +1,22 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgb(255, 255, 255);
+}
+
+img {
+    max-width: 300px;       
+    height: auto;           
+    margin-left: 15px;
+    margin-top: 33px;
+}
+
+@media (max-width: 600px) {
+    img {
+        max-width: 250px; //educe el tamaño del logo en pantallas pequeñas
+    }
+}

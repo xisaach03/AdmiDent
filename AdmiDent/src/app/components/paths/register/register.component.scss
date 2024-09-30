@@ -1,0 +1,159 @@
+body {
+    background: linear-gradient(
+        to right, 
+        #AEC1C5 33.33%, 
+        #F3F0E9 33.33%
+    );
+}
+
+img {
+    position: absolute;  
+    transform: translate(0%, 3%);
+    width: 100%;
+    height: auto;
+    margin-left: 10px;
+}
+
+.texto {
+    float: right; 
+    width: 50%; 
+    position: absolute; 
+    top: 55%; 
+    right: 20px; 
+    transform: translateY(-50%);
+    padding: 20px; 
+    box-sizing: border-box;
+}
+
+.meet-your-new {
+    font-size: 55px;
+    font-family: 'Croissant One';
+    color: #34747b;
+    text-align: left;
+    display: block; 
+    margin-bottom: 15px; 
+}
+
+.smart-solutions-for {
+    font-size: 23px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #605957;
+    text-align: left;
+    display: block; 
+    margin-bottom: 20px; 
+}
+
+input {
+    width: 250px; /* Ancho para que quepan en el contenedor */
+    padding: 0.75rem;
+    margin-bottom: .8rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;  
+    box-sizing: border-box;
+    outline: none;
+    display: inline-block; /* Permite que los inputs se alineen uno al lado del otro */
+    vertical-align: top; /* Alinea los inputs al top para evitar desalineaciones */
+}
+
+input[type="name"],[type="email"],[type="password"] {
+    margin-right: 0.8rem; /* Agrega separación al input de la contraseña */
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus, input[type="confirmPassword"]:focus{
+    border-color: #34747b;  
+}
+
+.password-reset {
+    margin-top: 1rem; 
+    text-decoration: underline;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    color: #999999;
+    padding-bottom: 10px;
+
+    .forgot-password {
+        color: #999999; 
+        font-weight: lighter; 
+
+        &:hover {
+            color: #2a5b5e; 
+        }
+    }
+}
+
+.register-button {
+    padding-top: 10px;
+}
+
+button {
+    padding: 0.5rem 1.5rem; 
+    border-radius: 25px; 
+    border: none; 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+    width: 250px;
+
+    &.register {
+        background-color: #34747b; 
+        color: white; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    }
+
+    &:hover {
+        transform: translateY(-2px); 
+    }
+}
+
+@media (max-width: 767px) {
+    body {
+        background: #F3F0E9;
+    }
+}
+
+@media (max-width: 768px) {
+    .texto {
+        float: right; 
+        width: 100%; 
+        position: relative; 
+        top: auto; 
+        right: 0; 
+        transform: none; 
+        text-align: left; 
+    }
+
+    .meet-your-new {
+        font-size: 2.5rem; 
+    }
+
+    .smart-solutions-for {
+        font-size: 1.2rem; 
+    }
+
+    button {
+        font-size: 0.9rem; 
+    }
+}
+
+@media (max-width: 767px) {
+    img {
+        display: none;            
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1200px) {
+    img {
+        width: 35%;              
+        margin-left: 100px;      
+        transform: translate(0%, 4%); 
+    }
+}
+
+@media (min-width: 1201px) {
+    img {
+        width: 26%;              
+        margin-left: 200px;      
+        transform: translate(0%, 3%); 
+    }
+}
+
