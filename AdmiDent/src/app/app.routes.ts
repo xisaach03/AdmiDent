@@ -21,5 +21,6 @@ export const routes: Routes = [
         { path: 'home/summary', component: LADPatiensSumComponent },
         { path: 'home/treatment', component: LADPatiensTreatmentComponent }
     ]
+}
     //{path: '**', component: NotFoundComponent}
-
+]
