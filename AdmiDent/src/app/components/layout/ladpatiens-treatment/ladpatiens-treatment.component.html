@@ -1,0 +1,77 @@
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="patient-search">
+            <input type="text" value="Davis" class="search-bar" />
+            <button class="add-new">Add New</button>
+        </div>
+        <div class="patients-list">
+            <div class="patient-item selected">Sarah Davis</div>
+            <div class="patient-item">Noah Davis</div>
+            <div class="patient-item">James Davis</div>
+            <div class="patient-item">Camila Davis</div>
+        </div>
+
+        <div class="treatment-plan">
+            <div class="title">Treatment Plan #123</div>
+            <div class="total">$11,500</div>
+            <button class="tab-button" id="edit">Edit</button>
+            <div>Cantidad total pendiente del tratamiento</div>
+            <br>
+            <div>Descuento aplicado: __%</div>
+            <div class="payment">
+                <span>Abonado: $3,500</span>
+                <span>Por abonar: $11,500</span>
+                <span>Total: $15,000</span>
+                <button>Realizar Pago</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h2>Treatment Plan #123 - Sarah Davis</h2>
+            <div class="tabs">
+                <button class="tab-button">Summary</button>
+                <button class="tab-button">Gallery</button>
+                <button class="tab-button active">Treatment</button>
+            </div>
+        </div>
+        <div class="treatment-history">
+            <h3>Treatment History</h3>
+            <div class="add-progress">
+                <input type="text" placeholder="Add progress" />
+                <button class="add-btn">Add</button>
+            </div>
+            <div class="treatment-entry">
+                <h3>Sept 20, 2024</h3>
+                <p>
+                    Bracket on the upper right canine (#13) was slightly loose and was
+                    re-bonded. The upper archwire (0.018 x 0.025 stainless steel) was
+                    removed. A new rectangular NiTi archwire (0.019 × 0.025) was placed
+                    to continue alignment and leveling. Power chain added from upper
+                    right molar (#16) to upper left molar (#26) to close remaining spaces.
+                </p>
+                <button class="edit-entry">Edit</button>
+            </div>
+            <div class="treatment-entry">
+                <h3>Aug 14, 2024</h3>
+                <p>
+                    Elastics (Class II, 3/16", 6 oz) are showing good compliance and bite
+                    correction. New elastics were prescribed (same size and force) with
+                    instructions to continue wearing them full-time to correct overjet.
+                    Patient was instructed to wear elastics as prescribed.
+                </p>
+                <button class="edit-entry">Edit</button>
+            </div>
+        </div>
+        <div class="pagination">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>...</button>
+            <button>5</button>
+        </div>
+    </div>
+</div>
