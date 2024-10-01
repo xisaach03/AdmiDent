@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-
 import { WelcomeComponent } from './components/paths/welcome/welcome.component';
 import { LoginComponent } from './components/paths/login/login.component';
 import { RegisterComponent } from './components/paths/register/register.component';
@@ -22,5 +21,5 @@ export const routes: Routes = [
         { path: 'home/treatment', component: LADPatiensTreatmentComponent }
     ]
 }
-    //{path: '**', component: NotFoundComponent}
+    //{path: '**', component: NotFoundComponent} 
 ]
