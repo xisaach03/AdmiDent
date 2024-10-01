@@ -3,7 +3,11 @@
     padding-top: 100px; // Añadir padding para evitar la superposición
 }
 
-//html{ height: 100%; }
-//body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@import "@mobiscroll/angular/dist/css/mobiscroll.scss";
+html{ height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+//@import "@mobiscroll/angular/dist/css/mobiscroll.scss";

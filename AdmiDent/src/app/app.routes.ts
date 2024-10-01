@@ -5,21 +5,20 @@ import { RegisterComponent } from './components/paths/register/register.componen
 import { GalleryComponent } from './components/paths/home/gallery/gallery.component';
 import { HomeComponent } from './components/paths/home/home.component';
 import { ScheduleComponent } from './components/paths/home/schedule/schedule.component';
-import { LADPatiensSumComponent } from './components/layout/ladpatiens-sum/ladpatiens-sum.component';
-import { LADPatiensTreatmentComponent } from './components/layout/ladpatiens-treatment/ladpatiens-treatment.component';
+import { LADPatiensSumComponent } from './components/paths/home/ladpatiens-sum/ladpatiens-sum.component';
+import { LADPatiensTreatmentComponent } from './components/paths/home/ladpatiens-treatment/ladpatiens-treatment.component';
 
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'register', pathMatch: 'full' },
+    { path: '', redirectTo: 'welcome', pathMatch: 'full' },
     { path: 'welcome', component: WelcomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'home'  , component: HomeComponent , children : [
-        { path: 'gallery' , component: GalleryComponent },
-        { path: 'schedule' , component: ScheduleComponent },
-        { path: 'home/summary', component: LADPatiensSumComponent },
-        { path: 'home/treatment', component: LADPatiensTreatmentComponent }
-    ]
-}
+    { path: 'home', component: HomeComponent },
+    { path: 'summary', component: LADPatiensSumComponent },
+    { path: 'treatment', component: LADPatiensTreatmentComponent},
+    { path: 'gallery' , component: GalleryComponent },
+    { path: 'schedule' , component: ScheduleComponent },
+    
     //{path: '**', component: NotFoundComponent} 
 ]

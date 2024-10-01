@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { SidebarComponent } from '../sidebar/sidebar.component';
+import { NavbarComponent } from '../../../layout/navbar/navbar.component';
+import { SidebarComponent } from '../../../layout/sidebar/sidebar.component';
 import { RouterOutlet } from '@angular/router';
-import { MaterialModule } from '../../../modules/material/material.module';
+import { MaterialModule } from '../../../../modules/material/material.module';
 
 
 @Component({
@@ -13,8 +13,5 @@ import { MaterialModule } from '../../../modules/material/material.module';
   styleUrl: './ladpatiens-sum.component.scss'
 })
 export class LADPatiensSumComponent {
-
-  value = 'Clear me';
-
 
 }

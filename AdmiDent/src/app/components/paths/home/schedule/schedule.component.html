@@ -1,0 +1,22 @@
+<div class="grid grid-cols-[1fr_2fr] w-500px h-full gap-4 p-4" style="background-color: #AEC1C5;">
+    <div class="side-var flex bg-white flex-col items-center">
+      <div class="flex justify-between p-5 mt-5 mb-5 gap-5 w-full">
+        <input type="text" name="name" id="name" placeholder="Search by name" class="w-3/4 rounded-3xl h-12 p-5 border-gray-300 border-2 focus:outline-none">
+        <button class="text-white text-lg text-center w-36 p-2 rounded-xl" style="background-color:#A6886B;"> Add New</button>
+      </div>
+  
+      <div class="event-list space-y-2 w-full px-4">
+        <h3 class="text-xl font-semibold mb-2">{{ selectedDate | date:'fullDate' }}</h3>
+        <div *ngFor="let event of dailyEvents" class="flex items-center space-x-4 py-2 px-4 border-l-4" [ngStyle]="{'border-color': event.color}">
+          <span class="font-semibold">{{ event.start | date: 'shortTime' }}</span>
+          <span>{{ event.title }}</span>
+        </div>
+        <div *ngIf="dailyEvents.length === 0" class="py-2 text-gray-500">No hay eventos para este día.</div>
+      </div>
+    </div>
+  
+    <div class="bg-white p-5">
+      <full-calendar [options]="calendarOptions" class="h-full"></full-calendar>
+    </div>
+  </div>
+  
