@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RegisterService } from '../../../services/register.service';
 
 @Component({
   selector: 'app-register',
@@ -9,4 +10,11 @@ import { Component } from '@angular/core';
 })
 export class RegisterComponent {
 
+  datos: any;
+
+  constructor(private registerService: RegisterService) {}
+
+  ngOnInit() {
+    this.datos = this.registerService.registrar()
+  }
 }

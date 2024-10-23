@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-welcome',
@@ -9,5 +9,11 @@ import { RouterModule } from '@angular/router';
   styleUrl: './welcome.component.scss'
 })
 export class WelcomeComponent {
+
+  constructor(private router: Router) {}
+
+  navigateToRegister() {
+    this.router.navigate(['/register']);
+  }
 
 }
