@@ -6,6 +6,10 @@ body {
     );
 }
 
+label {
+    display: block;
+}
+
 img {
     position: absolute;  
     transform: translate(0%, 3%);
