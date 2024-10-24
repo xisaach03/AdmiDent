@@ -1,29 +1,33 @@
-<body>
-    <div class="img-container">
-        <img src="/modeloMenu.jpg"
-            alt="Descripción de la imagen">
-    </div>
-    <div class="texto">
-        <div class="meet-your-new">Meet your new clinic administrator</div>
-        <div class="smart-solutions-for">Welcome </div>
-        <div class="form-container">
-            <form>
-                <input type="name" placeholder="Name" class="input-box" required>
-                <input type="lastName" placeholder="Last Name" class="input-box" required>
-            </form>
-            <form>
-                <input type="email" placeholder="E-mail" class="input-box" required>
-                <input type="role" placeholder="Role (Admin, Doctor, Asistant)" class="input-box" required>
-            </form>
-            <form>
-                <input type="password" placeholder="Password" class="input-box" required>
-                <input type="password" placeholder="Confirm Password" class="input-box" required>
-            </form>
+<div class="img-container">
+    <img src="/modeloMenu.jpg" alt="Descripción de la imagen">
+</div>
+<div class="texto">
+    <div class="meet-your-new">Meet your new clinic administrator</div>
+    <div class="smart-solutions-for">Welcome </div>
+    <form [formGroup]="form" (submit)="signup()" class="form-container">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" name="name" class="input-box" formControlName="name" required>
+        </div>
+        <div>
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" class="input-box" formControlName="lastName" required>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" class="input-box" formControlName="email" required>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" class="input-box" formControlName="password" required>
+        </div>
+        <div>
+            <label for="confirm">Confirm Password</label>
+            <input type="password" name="confirm" class="input-box" formControlName="confirm" required>
         </div>
         <div class="register-button">
             <button class="register">Register</button>
-        </div> 
-               
-    </div>
+        </div>
+    </form>
 
- 
+</div>
