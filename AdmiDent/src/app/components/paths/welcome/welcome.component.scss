@@ -1,27 +1,22 @@
-body {
-    background: linear-gradient(
-        to right, 
-        #AEC1C5 33.33%, 
-        #F3F0E9 33.33%
-    );
-}
+
 
 img {
-    position: absolute;  
+    position: absolute;
     transform: translate(0%, 3%);
     width: 100%;
     height: auto;
+    margin-top: 3.5%;
     margin-left: 10px;
 }
 
 .texto {
-    float: right; 
-    width: 50%; 
-    position: absolute; 
-    top: 55%; 
-    right: 20px; 
+    float: right;
+    width: 50%;
+    position: absolute;
+    top: 55%;
+    right: 20px;
     transform: translateY(-50%);
-    padding: 20px; 
+    padding: 20px;
     box-sizing: border-box;
 }
 
@@ -30,8 +25,10 @@ img {
     font-family: 'Croissant One';
     color: #34747b;
     text-align: left;
-    display: block; 
-    margin-bottom: 15px; 
+    display: block;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    /* Ajusta la altura de la línea */
 }
 
 .smart-solutions-for {
@@ -39,33 +36,36 @@ img {
     font-family: Arial, Helvetica, sans-serif;
     color: #605957;
     text-align: left;
-    display: block; 
-    margin-bottom: 20px; 
+    display: block;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    /* Ajusta la altura de la línea */
 }
 
+
 button {
-    padding: 0.5rem 1.5rem; 
-    border-radius: 25px; 
-    border: none; 
-    cursor: pointer; 
-    transition: all 0.3s ease; 
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
 
     &.login {
-        background-color: #34747b; 
-        color: white; 
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+        background-color: #34747b;
+        color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     &.signin {
-        background-color: #F3F0E9; 
-        color: #34747b; 
-        border: 1px solid #34747b; 
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-        margin-left: 1rem; 
+        background-color: #F3F0E9;
+        color: #34747b;
+        border: 1px solid #34747b;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin-left: 1rem;
     }
 
     &:hover {
-        transform: translateY(-2px); 
+        transform: translateY(-2px);
     }
 }
 
@@ -77,46 +77,46 @@ button {
 
 @media (max-width: 768px) {
     .texto {
-        float: right; 
-        width: 100%; 
-        position: relative; 
-        top: auto; 
-        right: 0; 
-        transform: none; 
-        text-align: left; 
+        float: right;
+        width: 100%;
+        position: relative;
+        top: auto;
+        right: 0;
+        transform: none;
+        text-align: left;
     }
 
     .meet-your-new {
-        font-size: 2.5rem; 
+        font-size: 2.5rem;
     }
 
     .smart-solutions-for {
-        font-size: 1.2rem; 
+        font-size: 1.2rem;
     }
 
     button {
-        font-size: 0.9rem; 
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 767px) {
     img {
-        display: none;            
+        display: none;
     }
 }
 
 @media (min-width: 601px) and (max-width: 1200px) {
     img {
-        width: 35%;              
-        margin-left: 100px;      
-        transform: translate(0%, 4%); 
+        width: 35%;
+        margin-left: 100px;
+        transform: translate(0%, 4%);
     }
 }
 
 @media (min-width: 1201px) {
     img {
-        width: 26%;              
-        margin-left: 200px;      
-        transform: translate(0%, 3%); 
+        width: 26%;
+        margin-left: 200px;
+        transform: translate(0%, 3%);
     }
 }
