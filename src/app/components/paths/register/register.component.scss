@@ -5,7 +5,9 @@ body {
         #F3F0E9 33.33%
     );
 }
-
+label {
+    display: block;
+ }
 img {
     position: absolute;  
     transform: translate(0%, 3%);
