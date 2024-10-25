@@ -6,10 +6,6 @@ body {
     );
 }
 
-label {
-    display: block;
-}
-
 img {
     position: absolute;  
     transform: translate(0%, 3%);
@@ -19,6 +15,7 @@ img {
 }
 
 .texto {
+    line-height: 1;
     float: right; 
     width: 50%; 
     position: absolute; 
