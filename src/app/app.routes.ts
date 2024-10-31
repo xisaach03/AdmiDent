@@ -8,6 +8,7 @@ import { HomeComponent } from './components/paths/home/home.component';
 import { ScheduleComponent } from './components/paths/home/schedule/schedule.component';
 import { LADPatiensSumComponent } from './components/paths/home/ladpatiens-sum/ladpatiens-sum.component';
 import { LADPatiensTreatmentComponent } from './components/paths/home/ladpatiens-treatment/ladpatiens-treatment.component';
+import { authGuard } from './guards/auth.guard';
 
 
 export const routes: Routes = [
@@ -15,11 +16,11 @@ export const routes: Routes = [
     { path: 'welcome', component: WelcomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'home', component: HomeComponent },
-    { path: 'summary', component: LADPatiensSumComponent },
-    { path: 'treatment', component: LADPatiensTreatmentComponent},
-    { path: 'gallery' , component: GalleryComponent },
-    { path: 'schedule' , component: ScheduleComponent },
+    { path: 'home', component: HomeComponent , canActivate : [authGuard]},
+    { path: 'summary', component: LADPatiensSumComponent, canActivate : [authGuard] },
+    { path: 'treatment', component: LADPatiensTreatmentComponent , canActivate : [authGuard]},
+    { path: 'gallery' , component: GalleryComponent , canActivate : [authGuard] },
+    { path: 'schedule' , component: ScheduleComponent , canActivate : [authGuard]},
     
     //{path: '**', component: NotFoundComponent} 
 ]

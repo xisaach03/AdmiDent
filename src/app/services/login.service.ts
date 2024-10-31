@@ -12,6 +12,10 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   login(credentials: { email: string; password: string }): Observable<string> {
-    return this.http.post(this.loginUrl, credentials, { responseType: 'text' });
+    return this.http.post(this.loginUrl, credentials, {
+      responseType: 'text',
+      withCredentials: true // Incluye este flag
+    });
   }
+  
 }
