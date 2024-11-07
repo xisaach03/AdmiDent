@@ -1,29 +1,58 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { FileUploadService } from '../../../../services/file-upload.service';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
-interface treatment{
-  plan : string ,
-  url : string
+interface Treatment {
+  plan: string;
+  url: string;
 }
+
 @Component({
   selector: 'app-gallery',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './gallery.component.html',
-  styleUrl: './gallery.component.scss'
+  styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent {
+  imageUrl: string | null = null; // La URL de la imagen
+  form: FormGroup;
 
-  img : treatment[] = [
-    // {plan: 'Imagen 1' , url : 'https://feji.us/acnawz'},
-    // {plan: 'Imagen 2' , url : 'https://feji.us/acnawz'},
-    // {plan: 'Imagen 3' , url : 'https://feji.us/acnawz'},
-    // {plan: 'Imagen 4' , url : 'https://feji.us/acnawz'},
-  ]
-
-  planEmpty(){
-return this.img.length === 0 ? true : false;
+  constructor(private fileUpload: FileUploadService, private formBuilder: FormBuilder) { 
+    this.form = this.formBuilder.group({
+      image: ['', [Validators.required]]
+    });
   }
 
+  onSubmit(): void {
+    if (this.form.valid) {
+      const file = this.form.get('image')?.value;
+      console.log('Imagen a subir:', file); // Verifica que el archivo está en el formulario
+      
+      this.fileUpload.uploadImage(this.form.getRawValue()).subscribe({
+        next: (response) => {
+          console.log(response); // Verifica la respuesta del servidor
+        },
+        error: (err) => {
+          console.log('Error al subir el archivo:', err);
+        }
+      });
+    } else {
+      console.log('Formulario no válido');
+    }
+  }
+  
 
+  // Método para manejar el cambio de archivo
+  onFileChange(event: any): void {
+    const file = event.target.files[0]; // Obtiene el archivo seleccionado
+    if (file) {
+      console.log('Archivo seleccionado:', file); // Esto te permitirá ver qué archivo se seleccionó
+      this.form.patchValue({ image: file }); // Asigna el archivo al formulario
+      this.form.get('image')?.updateValueAndValidity(); // Asegúrate de que el campo esté actualizado
+    } else {
+      console.log('No se ha seleccionado ningún archivo');
+    }
+  }
+  
 }
