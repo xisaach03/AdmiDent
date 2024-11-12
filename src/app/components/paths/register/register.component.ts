@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RegisterService } from '../../../services/register.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,7 @@ export class RegisterComponent {
     confirm: '',
   }
 
-  constructor(private registerService: RegisterService, formBuilder: FormBuilder) {
+  constructor(private registerService: RegisterService, formBuilder: FormBuilder, private router: Router) {
     this.form = formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
@@ -44,7 +45,10 @@ export class RegisterComponent {
     if (this.form.valid) {
       console.log('Enviar datos????', this.form.getRawValue());
       this.registerService.registrar(this.form.getRawValue()).subscribe({
-        next: (response) => {this.datos = response},
+        next: (response) => {
+          this.datos = response
+          this.router.navigateByUrl('home');
+        },
         error: () => {}
       })
       // this.datos.name = '';
