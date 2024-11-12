@@ -52,18 +52,17 @@
                 <button class="w-[100px] h-[40px] p-2 bg-[#A6886B] rounded-xl text-white font-medium">Treatment</button>
             </div>
         </div>
-        @if (planEmpty()) {
-            <div class="flex flex-col items-center justify-center w-full h-[650px]">
-                <button class="rounded-2xl p-3 mb-4 text-white font-semibold bg-[#34747B] hover:bg-[#24545a]">Add Treatment</button>
-                <p class="text-gray-500">Aun no se ha cargado ningun tratamiento...</p>
-            </div>
-        }@else {
-            <div class="grid grid-cols-3 m-5 gap-5 p-8">
-                @for (imgs of img; track $index) {
-                    <div><img class=" w-[300px] h-[200px]"src="{{imgs.url}}" alt="{{imgs.plan}}"></div>
-                }
-            </div>
-        }
+        <div class="flex flex-col items-center justify-center w-full h-[650px] ">
+            <form (ngSubmit)="onSubmit()" class="w-full flex flex-col items-center">
+                <!-- Estilizamos el campo de archivo con un contenedor personalizado -->
+                <label for="image" class="cursor-pointer mb-5 w-[80px] h-[80px] shadow-2xl border-gray-200 border rounded-full flex flex-col items-center justify-center text-gray-500 hover:text-white  hover:bg-[#24545a] transition duration-1000">
+                    <span class="material-symbols-outlined text-5xl">cloud_upload</span>
+                </label>
+                <input type="file" name="image" id="image" class="hidden" (change)="onFileChange($event)">
+
+                <!-- Botón para subir la imagen -->
+                <button type="submit" class="rounded-2xl p-3 mb-4 w-[150px] text-white font-semibold bg-[#34747B] hover:bg-[#24545a] transition duration-300">Upload</button>
+            </form>
 
     </div>
 </div>

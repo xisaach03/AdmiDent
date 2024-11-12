@@ -2,23 +2,29 @@
     <div class="img-container">
         <img src="/modeloMenu.jpg"
             alt="Descripción de la imagen">
+
+<div class="img-container">
+    <img src="/modeloMenu.jpg" alt="Descripción de la imagen">
+  </div>
+  
+  <div class="texto">
+    <div class="meet-your-new">Meet your new clinic administrator</div>
+    <div class="smart-solutions-for">Welcome Again</div>
+    
+    <div class="form-container">
+      <form [formGroup]="form" (submit)="login()">
+        <input type="email" placeholder="E-mail" class="input-box" formControlName="email" required>
+        <input type="password" placeholder="Password" class="input-box" formControlName="password" required>
+      </form>
     </div>
-    <div class="texto">
-        <div class="meet-your-new">Meet your new clinic administrator</div>
-        <div class="smart-solutions-for">Welcome Again</div>
-        <div class="form-container">
-            <form>
-                <input type="email" placeholder="E-mail" class="input-box" required>
-                <input type="password" placeholder="Password" class="input-box" required>
-            </form>
-        </div>
-        <div class="password-reset">
-            <a href="#" class="forgot-password">Forgot my password</a>
-        </div>
-        <div>
-            <button class="login">Log In</button>
-        </div>
-        
+  
+    <div class="password-reset">
+      <a href="#" class="forgot-password">Forgot my password</a>
     </div>
+
+    <div>
+      <button class="login" type="submit" (click)="login()">Log In</button>
+    </div>
+  </div>
 
 

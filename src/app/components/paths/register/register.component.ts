@@ -46,8 +46,9 @@ export class RegisterComponent {
       console.log('Enviar datos????', this.form.getRawValue());
       this.registerService.registrar(this.form.getRawValue()).subscribe({
         next: (response) => {
+          alert('Usuario creado')
           this.datos = response
-          this.router.navigateByUrl('home');
+          this.router.navigate(['/home'])
         },
         error: () => {}
       })
