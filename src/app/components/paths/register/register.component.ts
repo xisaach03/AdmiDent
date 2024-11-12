@@ -22,7 +22,7 @@ export class RegisterComponent {
     confirm: '',
   }
 
-  constructor(private registerService: RegisterService, formBuilder: FormBuilder , private router : Router) {
+  constructor(private registerService: RegisterService, formBuilder: FormBuilder, private router: Router) {
     this.form = formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
