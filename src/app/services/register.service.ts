@@ -18,7 +18,8 @@ export class RegisterService {
     const url = `${environment.apiUrl}register`
     return this.http.post<any>(
       url,
-      data
+      data,
+      { withCredentials: true } // Asegura que las cookies se envíen con la solicitud
     )
     .pipe(
       catchError(error => {
@@ -28,6 +29,6 @@ export class RegisterService {
         }
         return throwError(() => error); // Re-lanzar el error para que pueda ser manejado por otros suscriptores si es necesario
       })
-    )
+    );
   }
 }
