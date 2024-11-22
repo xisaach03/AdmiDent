@@ -42,22 +42,29 @@ export class GalleryComponent implements OnInit{
 
   onSubmit(): void {
     if (this.form.valid) {
-      const file = this.form.get('image')?.value;
-      console.log('Imagen a subir:', file); // Verifica que el archivo está en el formulario
-      
-      this.fileUpload.uploadImage(this.form.getRawValue()).subscribe({
-        next: (response) => {
-          console.log(response); // Verifica la respuesta del servidor
-        },
-        error: (err) => {
-          console.log('Error al subir el archivo:', err);
-        }
-      });
+        const file = this.form.get('image')?.value;
+        console.log('Imagen a subir:', file); // Verifica que el archivo está en el formulario
+        
+        this.fileUpload.uploadImage(this.form.getRawValue()).subscribe({
+            next: (response) => {
+                console.log(response); // Verifica la respuesta del servidor
+
+                // Opción 1: Actualizar toda la lista de imágenes desde el servicio
+                this.imgService.getImages().subscribe((updatedImages) => {
+                    this.img = updatedImages;
+                    console.log('Lista de imágenes actualizada:', this.img);
+                });
+
+            },
+            error: (err) => {
+                console.log('Error al subir el archivo:', err);
+            }
+        });
     } else {
-      console.log('Formulario no válido');
+        console.log('Formulario no válido');
     }
-  }
-  
+}
+
 
   // Método para manejar el cambio de archivo
   onFileChange(event: any): void {
@@ -77,21 +84,28 @@ export class GalleryComponent implements OnInit{
       this.currentPage = (this.currentPage + direction + totalPages) % totalPages;
     }
   
-    // Método para obtener las imágenes a mostrar en la página actual
     get visibleImages() {
       const start = this.currentPage * this.imagesPerPage;
-      return this.img.slice(start, start + this.imagesPerPage);
-    }
+      const end = start + this.imagesPerPage;
   
-    // Método para saber si hay una página anterior
-    hasPreviousPage(): boolean {
-      return this.currentPage > 0;
-    }
+      // Si estamos en la última página y está vacía, mostramos el formulario
+      const isLastPage = this.currentPage === Math.ceil(this.img.length / this.imagesPerPage);
+      if (isLastPage) {
+          return this.img.slice(start, end); // Última página con espacio para el formulario
+      }
   
-    // Método para saber si hay una página siguiente
-    hasNextPage(): boolean {
+      return this.img.slice(start, end);
+  }
+  
+  hasNextPage(): boolean {
+      // Hay una siguiente página si hay imágenes adicionales o espacio para el formulario
       const totalPages = Math.ceil(this.img.length / this.imagesPerPage);
-      return this.currentPage < totalPages - 1;
-    }
+      return this.currentPage < totalPages;
+  }
+  
+  hasPreviousPage(): boolean {
+      return this.currentPage > 0;
+  }
+  
   
 }
