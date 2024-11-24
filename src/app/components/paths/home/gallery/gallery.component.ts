@@ -1,13 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FileUploadService } from '../../../../services/file-upload.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-<<<<<<< Updated upstream
-=======
 import { ImagesService } from '../../../../services/images.service';
 import { Image } from '../../../../types/image';
 import { Router } from '@angular/router';
 import { ClientService } from '../../../../services/client.service';
->>>>>>> Stashed changes
 
 interface Treatment {
   plan: string;
@@ -21,13 +18,7 @@ interface Treatment {
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss']
 })
-<<<<<<< Updated upstream
-export class GalleryComponent {
-  imageUrl: string | null = null; // La URL de la imagen
-  form: FormGroup;
 
-  constructor(private fileUpload: FileUploadService, private formBuilder: FormBuilder) { 
-=======
 export class GalleryComponent implements OnInit {
   imageUrl: string | null = null; // La URL de la imagen
   form: FormGroup;
@@ -42,67 +33,47 @@ export class GalleryComponent implements OnInit {
   inputLastname: string = '';
 
   constructor(private fileUpload: FileUploadService, private formBuilder: FormBuilder, private imgService: ImagesService, private clientService: ClientService, private router: Router) {
->>>>>>> Stashed changes
+    
     this.form = this.formBuilder.group({
       image: ['', [Validators.required]]
     });
   }
-
-<<<<<<< Updated upstream
-=======
   ngOnInit(): void {
-    
-    this.imgService.getImages().subscribe(
-      (data) => {
-        this.img = data
-      },
-      (error) => {
-        console.log('Error al cargar imagenes', error)
-      }
+      this.imgService.getImages().subscribe(
+        (data) => {
+          this.img = data
+        },
+        (error) => {
+          console.log('Error al cargar imagenes' , error)
+        }
       )
-      // this.clientService.getClients().subscribe(data => {
-      //   this.clients = Array.isArray(data) ? data : [];
-      //   console.log(this.clients)
-      // });
   }
 
->>>>>>> Stashed changes
   onSubmit(): void {
     if (this.form.valid) {
-      const file = this.form.get('image')?.value;
-      console.log('Imagen a subir:', file); // Verifica que el archivo está en el formulario
-<<<<<<< Updated upstream
-      
-      this.fileUpload.uploadImage(this.form.getRawValue()).subscribe({
-        next: (response) => {
-          console.log(response); // Verifica la respuesta del servidor
-=======
+        const file = this.form.get('image')?.value;
+        console.log('Imagen a subir:', file); // Verifica que el archivo está en el formulario
+        
+        this.fileUpload.uploadImage(this.form.getRawValue()).subscribe({
+            next: (response) => {
+                console.log(response); // Verifica la respuesta del servidor
 
-      this.fileUpload.uploadImage(this.form.getRawValue()).subscribe({
-        next: (response) => {
-          console.log(response); // Verifica la respuesta del servidor
+                // Opción 1: Actualizar toda la lista de imágenes desde el servicio
+                this.imgService.getImages().subscribe((updatedImages) => {
+                    this.img = updatedImages;
+                    console.log('Lista de imágenes actualizada:', this.img);
+                });
 
-          // Opción 1: Actualizar toda la lista de imágenes desde el servicio
-          this.imgService.getImages().subscribe((updatedImages) => {
-            this.img = updatedImages;
-            console.log('Lista de imágenes actualizada:', this.img);
-          });
-
->>>>>>> Stashed changes
-        },
-        error: (err) => {
-          console.log('Error al subir el archivo:', err);
-        }
-      });
+            },
+            error: (err) => {
+                console.log('Error al subir el archivo:', err);
+            }
+        });
     } else {
-      console.log('Formulario no válido');
+        console.log('Formulario no válido');
     }
-  }
-<<<<<<< Updated upstream
-  
-=======
+}
 
->>>>>>> Stashed changes
 
   // Método para manejar el cambio de archivo
   onFileChange(event: any): void {
@@ -115,9 +86,6 @@ export class GalleryComponent implements OnInit {
       console.log('No se ha seleccionado ningún archivo');
     }
   }
-<<<<<<< Updated upstream
-  
-=======
 
   // Método para cambiar de página
   changePage(direction: number): void {
@@ -166,5 +134,5 @@ export class GalleryComponent implements OnInit {
     this.router.navigate(['/treatment'])
   }
 
->>>>>>> Stashed changes
+
 }
