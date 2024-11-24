@@ -12,4 +12,5 @@ import { NotificationComponent } from './components/layout/notification/notifica
 })
 export class AppComponent {
   title = 'AdmiDent';
+
 }

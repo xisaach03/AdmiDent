@@ -3,6 +3,8 @@ import { FileUploadService } from '../../../../services/file-upload.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ImagesService } from '../../../../services/images.service';
 import { Image } from '../../../../types/image';
+import { Router } from '@angular/router';
+import { ClientService } from '../../../../services/client.service';
 
 interface Treatment {
   plan: string;
@@ -16,19 +18,26 @@ interface Treatment {
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss']
 })
-export class GalleryComponent implements OnInit{
+
+export class GalleryComponent implements OnInit {
   imageUrl: string | null = null; // La URL de la imagen
   form: FormGroup;
-  img : Image[] = [];
+  img: Image[] = [];
   currentPage = 0; // Página actual
   imagesPerPage = 6; // Número de imágenes por página
 
-  constructor(private fileUpload: FileUploadService, private formBuilder: FormBuilder , private imgService : ImagesService) { 
+  //Estos son para poder modificar con dom dinámicamente los clientes:
+  clients: any[] = [];
+  selectedClientId: string | null = null;
+  inputName: string = '';
+  inputLastname: string = '';
+
+  constructor(private fileUpload: FileUploadService, private formBuilder: FormBuilder, private imgService: ImagesService, private clientService: ClientService, private router: Router) {
+    
     this.form = this.formBuilder.group({
       image: ['', [Validators.required]]
     });
   }
-
   ngOnInit(): void {
       this.imgService.getImages().subscribe(
         (data) => {
@@ -78,34 +87,52 @@ export class GalleryComponent implements OnInit{
     }
   }
 
-    // Método para cambiar de página
-    changePage(direction: number): void {
-      const totalPages = Math.ceil(this.img.length / this.imagesPerPage);
-      this.currentPage = (this.currentPage + direction + totalPages) % totalPages;
+  // Método para cambiar de página
+  changePage(direction: number): void {
+    const totalPages = Math.ceil(this.img.length / this.imagesPerPage);
+    this.currentPage = (this.currentPage + direction + totalPages) % totalPages;
+  }
+
+  get visibleImages() {
+    const start = this.currentPage * this.imagesPerPage;
+    const end = start + this.imagesPerPage;
+
+    // Si estamos en la última página y está vacía, mostramos el formulario
+    const isLastPage = this.currentPage === Math.ceil(this.img.length / this.imagesPerPage);
+    if (isLastPage) {
+      return this.img.slice(start, end); // Última página con espacio para el formulario
     }
-  
-    get visibleImages() {
-      const start = this.currentPage * this.imagesPerPage;
-      const end = start + this.imagesPerPage;
-  
-      // Si estamos en la última página y está vacía, mostramos el formulario
-      const isLastPage = this.currentPage === Math.ceil(this.img.length / this.imagesPerPage);
-      if (isLastPage) {
-          return this.img.slice(start, end); // Última página con espacio para el formulario
-      }
-  
-      return this.img.slice(start, end);
+
+    return this.img.slice(start, end);
   }
-  
+
   hasNextPage(): boolean {
-      // Hay una siguiente página si hay imágenes adicionales o espacio para el formulario
-      const totalPages = Math.ceil(this.img.length / this.imagesPerPage);
-      return this.currentPage < totalPages;
+    // Hay una siguiente página si hay imágenes adicionales o espacio para el formulario
+    const totalPages = Math.ceil(this.img.length / this.imagesPerPage);
+    return this.currentPage < totalPages;
   }
-  
+
   hasPreviousPage(): boolean {
-      return this.currentPage > 0;
+    return this.currentPage > 0;
   }
-  
-  
+
+  onSelectClient(client: any): void {
+    this.selectedClientId = client._id;
+    this.inputName = client.firstName;
+    this.inputLastname = client.lastName;
+  }
+
+  goToGall() {
+    this.router.navigate(['/gallery'])
+  }
+
+  goToSumm() {
+    this.router.navigate(['/summary'])
+  }
+
+  goToTreat() {
+    this.router.navigate(['/treatment'])
+  }
+
+
 }

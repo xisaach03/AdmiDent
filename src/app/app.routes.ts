@@ -9,6 +9,7 @@ import { ScheduleComponent } from './components/paths/home/schedule/schedule.com
 import { LADPatiensSumComponent } from './components/paths/home/ladpatiens-sum/ladpatiens-sum.component';
 import { LADPatiensTreatmentComponent } from './components/paths/home/ladpatiens-treatment/ladpatiens-treatment.component';
 import { authGuard } from './guards/auth.guard';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 export const routes: Routes = [
@@ -21,8 +22,7 @@ export const routes: Routes = [
     { path: 'treatment', component: LADPatiensTreatmentComponent , canActivate : [authGuard]},
     { path: 'gallery' , component: GalleryComponent , canActivate : [authGuard] },
     { path: 'schedule' , component: ScheduleComponent , canActivate : [authGuard]},
-    
-    //{path: '**', component: NotFoundComponent} 
+    {path: '**', component: NotFoundComponent} 
 ]
 
 @NgModule({

@@ -11,31 +11,16 @@
         </div>
 
         <div class="flex flex-col shadow-lg rounded-lg border-gray-200 border-[1.5px] w-[450px]">
-            <div class="flex items-center gap-2 m-5 mb-2">
-                <span class="material-symbols-outlined ">person</span><a
-                    class="text-center font-medium p-2 rounded-xl hover:bg-[#34747B] hover:text-white" href="#"> Patient
-                    Name </a>
+            @for (client of clients; track $index) {
+            <div class="flex items-center gap-2 m-5 mb-2" [class.selected]="client._id === selectedClientId" (click)="onSelectClient(client)">
+                    <span class=" material-symbols-outlined ">person</span><a
+                        class=" text-center font-medium p-2 rounded-xl hover:bg-[#34747B] hover:text-white" href="#">
+                {{client.firstName}} </a>
             </div>
-            <div class="flex items-center gap-2 m-5 mb-2">
-                <span class="material-symbols-outlined ">person</span><a
-                    class="text-center font-medium p-2 rounded-xl hover:bg-[#34747B] hover:text-white" href="#"> Patient
-                    Name </a>
-            </div>
-            <div class="flex items-center gap-2 m-5 mb-2">
-                <span class="material-symbols-outlined ">person</span><a
-                    class="text-center font-medium p-2 rounded-xl hover:bg-[#34747B] hover:text-white" href="#"> Patient
-                    Name </a>
-            </div>
-            <div class="flex items-center gap-2 m-5 mb-2">
-                <span class="material-symbols-outlined ">person</span><a
-                    class="text-center font-medium p-2 rounded-xl hover:bg-[#34747B] hover:text-white" href="#"> Patient
-                    Name </a>
-            </div>
-
-        </div>
+            }
 
         <div class="flex flex-col w-[450px] mt-5">
-            <h2 class="treatment-h1 text-xl font-semibold">Treatment Plan #12345</h2>
+            <h2 class="treatment-h1 text-xl font-semibold">Treatment Plan</h2>
             <h2 class="price text-4xl font-bold">$11,500</h2>
             <div class="flex justify-between items-center mt-2 gap-3 mb-2">
                 <p class="w-[70%] text-sm text-gray-500 ">Cantidad total pendiente del tratamiento</p>
@@ -57,16 +42,18 @@
     <div class="bg-white">
         <div class="flex justify-between m-5">
             <div class="">
-                <h1 class="treatment text-xl text-black font-semibold">Treatment Plan #123</h1>
-                <h2 class="ml-1 patient text-xl text-black font-semibold">Patient : Sarah Davis</h2>
+                <h1 class="treatment text-xl text-black font-semibold">Treatment Plan</h1>
+                <h2 class="ml-1 patient text-xl text-black font-semibold">Patient : {{inputName}} {{inputLastname}}</h2>
             </div>
             <div class=" flex gap-2 m-2">
-                <button class="w-[100px] h-[40px] p-2 bg-[#A6886B] rounded-xl text-white font-medium">Summary</button>
-                <button class="w-[100px] h-[40px] p-2 bg-[#34747B] rounded-xl text-white font-medium">Gallery</button>
-                <button class="w-[100px] h-[40px] p-2 bg-[#A6886B] rounded-xl text-white font-medium">Treatment</button>
+                <button class="w-[100px] h-[40px] p-2 bg-[#A6886B] rounded-xl text-white font-medium"
+                    (click)="goToSumm()">Summary</button>
+                <button class="w-[100px] h-[40px] p-2 bg-[#34747B] rounded-xl text-white font-medium"
+                    (click)="goToGall()">Gallery</button>
+                <button class="w-[100px] h-[40px] p-2 bg-[#A6886B] rounded-xl text-white font-medium"
+                    (click)="goToTreat()">Treatment</button>
             </div>
         </div>
-
 
         <div class="flex flex-col items-center justify-center w-full h-[750px]  p-8">
             @if (img.length === 0) {
