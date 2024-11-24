@@ -1,0 +1,23 @@
+.not-found-container {
+    text-align: center;
+    padding: 2rem;
+  
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+  
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+  
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+    }
+  }

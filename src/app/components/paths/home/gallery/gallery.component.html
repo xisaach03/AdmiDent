@@ -7,6 +7,7 @@
             <button class=" text-white  text-lg text-center w-[150px] p-2 rounded-xl" style="background-color:#A6886B;"> Add New</button>
         </div>
 
+<<<<<<< Updated upstream
         <div class= "flex flex-col shadow-lg rounded-lg border-gray-200 border-[1.5px] w-[450px]">
             <div class="flex items-center gap-2 m-5 mb-2">
                 <span class="material-symbols-outlined ">person</span><a class="text-center font-medium p-2 rounded-xl hover:bg-[#34747B] hover:text-white" href="#"> Patient Name </a>
@@ -21,10 +22,20 @@
                 <span class="material-symbols-outlined ">person</span><a class="text-center font-medium p-2 rounded-xl hover:bg-[#34747B] hover:text-white" href="#"> Patient Name </a>
             </div>
             
+=======
+        <div class="flex flex-col shadow-lg rounded-lg border-gray-200 border-[1.5px] w-[450px]">
+            @for (client of clients; track $index) {
+            <div class="flex items-center gap-2 m-5 mb-2" [class.selected]="client._id === selectedClientId" (click)="onSelectClient(client)">
+                    <span class=" material-symbols-outlined ">person</span><a
+                        class=" text-center font-medium p-2 rounded-xl hover:bg-[#34747B] hover:text-white" href="#">
+                {{client.firstName}} </a>
+            </div>
+            }
+>>>>>>> Stashed changes
         </div>
 
         <div class="flex flex-col w-[450px] mt-5">
-            <h2 class="treatment-h1 text-xl font-semibold">Treatment Plan #12345</h2>
+            <h2 class="treatment-h1 text-xl font-semibold">Treatment Plan</h2>
             <h2 class="price text-4xl font-bold">$11,500</h2>
             <div class="flex justify-between items-center mt-2 gap-3 mb-2">
                 <p class="w-[70%] text-sm text-gray-500 ">Cantidad total pendiente del tratamiento</p>
@@ -43,13 +54,16 @@
     <div class="bg-white">
         <div class="flex justify-between m-5">
             <div class="">
-                <h1 class="treatment text-xl text-black font-semibold">Treatment Plan #123</h1>
-                <h2 class="ml-1 patient text-xl text-black font-semibold">Patient : Sarah Davis</h2>
+                <h1 class="treatment text-xl text-black font-semibold">Treatment Plan</h1>
+                <h2 class="ml-1 patient text-xl text-black font-semibold">Patient : {{inputName}} {{inputLastname}}</h2>
             </div>
             <div class=" flex gap-2 m-2">
-                <button class="w-[100px] h-[40px] p-2 bg-[#A6886B] rounded-xl text-white font-medium">Summary</button>
-                <button class="w-[100px] h-[40px] p-2 bg-[#34747B] rounded-xl text-white font-medium">Gallery</button>
-                <button class="w-[100px] h-[40px] p-2 bg-[#A6886B] rounded-xl text-white font-medium">Treatment</button>
+                <button class="w-[100px] h-[40px] p-2 bg-[#A6886B] rounded-xl text-white font-medium"
+                    (click)="goToSumm()">Summary</button>
+                <button class="w-[100px] h-[40px] p-2 bg-[#34747B] rounded-xl text-white font-medium"
+                    (click)="goToGall()">Gallery</button>
+                <button class="w-[100px] h-[40px] p-2 bg-[#A6886B] rounded-xl text-white font-medium"
+                    (click)="goToTreat()">Treatment</button>
             </div>
         </div>
         <div class="flex flex-col items-center justify-center w-full h-[650px] ">
@@ -64,5 +78,65 @@
                 <button type="submit" class="rounded-2xl p-3 mb-4 w-[150px] text-white font-semibold bg-[#34747B] hover:bg-[#24545a] transition duration-300">Upload</button>
             </form>
 
+<<<<<<< Updated upstream
     </div>
+=======
+        <div class="flex flex-col items-center justify-center w-full h-[750px]  p-8">
+            @if (img.length === 0) {
+            <form (ngSubmit)="onSubmit()" class="w-full flex flex-col items-center">
+                <!-- Estilizamos el campo de archivo con un contenedor personalizado -->
+                <label for="image"
+                    class="cursor-pointer mb-5 w-[80px] h-[80px] shadow-2xl border-gray-200 border rounded-full flex flex-col items-center justify-center text-gray-500 hover:text-white  hover:bg-[#24545a] transition duration-1000">
+                    <span class="material-symbols-outlined text-5xl">cloud_upload</span>
+                </label>
+                <input type="file" name="image" id="image" class="hidden" (change)="onFileChange($event)">
+
+                <!-- Botón para subir la imagen -->
+                <button type="submit"
+                    class="rounded-2xl p-3 mb-4 w-[150px] text-white font-semibold bg-[#34747B] hover:bg-[#24545a] transition duration-300">Upload</button>
+            </form>
+            }@else{
+            <!-- Contenedor de imágenes y formulario -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @for (imgs of visibleImages; track $index) {
+                <img class="w-[400px] h-[300px] object-cover rounded-lg shadow-md hover:scale-105 transition-transform"
+                    [src]="imgs.url" [alt]="imgs.filename" />
+                }
+
+                <!-- Mostrar el formulario solo si hay espacio vacío (menos de 6 imágenes) -->
+                @if (visibleImages.length < 6) { <div
+                    class="w-[400px] h-[300px] flex items-center justify-center bg-gray-200 rounded-lg shadow-md">
+                    <form (ngSubmit)="onSubmit()" class="w-full flex flex-col items-center">
+                        <!-- Estilizamos el campo de archivo con un contenedor personalizado -->
+                        <label for="image"
+                            class="cursor-pointer mb-5 w-[80px] h-[80px] shadow-2xl border-gray-200 border rounded-full flex flex-col items-center justify-center text-gray-500 hover:text-white  hover:bg-[#24545a] transition duration-1000">
+                            <span class="material-symbols-outlined text-5xl">cloud_upload</span>
+                        </label>
+                        <input type="file" name="image" id="image" class="hidden" (change)="onFileChange($event)">
+
+                        <!-- Botón para subir la imagen -->
+                        <button type="submit"
+                            class="rounded-2xl p-3 mb-4 w-[150px] text-white font-semibold bg-[#34747B] hover:bg-[#24545a] transition duration-300">Upload</button>
+                    </form>
+            </div>
+            }
+        </div>
+
+        <!-- Controles de navegación -->
+        <div class="flex items-center justify-center w-full mt-4 gap-10">
+            <button class="px-4 py-2 text-gray-700 rounded-full shadow-2xl border-gray-200 border shadow-slate-700"
+                (click)="changePage(-1)" [disabled]="!hasPreviousPage()">
+                < </button>
+                    <button
+                        class="px-4 py-2 text-gray-600 rounded-full shadow-2xl border-gray-200 border shadow-slate-700"
+                        (click)="changePage(1)" [disabled]="!hasNextPage()">
+                        >
+                    </button>
+        </div>
+        }
+    </div>
+
+
+
+>>>>>>> Stashed changes
 </div>

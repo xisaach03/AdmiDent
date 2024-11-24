@@ -5,15 +5,23 @@
             <input type="text" placeholder="" class="search-bar" />
             <button class="add-new">Add New</button>
         </div>
+<<<<<<< Updated upstream
         <div class="patients-list"  id="patients">
             <div class="patient-item">Sarah Davis</div>
             <div class="patient-item">Noah Davis</div>
             <div class="patient-item">James Davis</div>
             <div class="patient-item">Camila Davis</div>
+=======
+        <div class="patients-list">
+            @for (client of clients; track $index) {
+            <div class="patient-item" [class.selected]="client._id === selectedClientId" (click)="onSelectClient(client)">
+                {{client.firstName}}
+            </div>
+            }
+>>>>>>> Stashed changes
         </div>
-
         <div class="treatment-plan">
-            <div class="title">Treatment Plan #123</div>
+            <div class="title">Treatment Plan</div>
             <div class="total">$11,500</div>
             <button class="tab-button" id="edit">Edit</button>
             <div>Cantidad total pendiente del tratamiento</div>
@@ -31,11 +39,11 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="header">
-            <h3>Treatment Plan #123 - Sarah Davis</h3>
+            <h3>Treatment Plan - {{inputName}} {{inputLastname}}</h3>
             <div class="tabs">
-                <button class="tab-button active">Summary</button>
-                <button class="tab-button">Gallery</button>
-                <button class="tab-button">Treatment</button>
+                <button class="tab-button" (click)="goToSumm()" >Summary</button>
+                <button class="tab-button" (click)="goToGall()">Gallery</button>
+                <button class="tab-button active" (click)="goToTreat()">Treatment</button>
             </div>
         </div>
 
@@ -43,45 +51,45 @@
         <div class="general-info">
             <h3>General Information</h3>
             <div class="info-group">
-                <div class="input-field">
+                <div class="input-field" id="inputName">
                     <label>Name</label>
-                    <input type="text" value="Sarah" />
+                    <input type="text" [value]="inputName"/>
                 </div>
                 <div class="input-field">
                     <label>Surname</label>
-                    <input type="text" value="Davis" />
+                    <input type="text" [value]="inputLastname" />
                 </div>
                 <div class="input-field">
                     <label>Email</label>
-                    <input type="email" value="sarahD@gmail.com" />
+                    <input type="email" [value]="inputEmail" />
                 </div>
                 <div class="input-field">
                     <label>Phone Number</label>
-                    <input type="tel" value="3314568754" />
+                    <input type="tel" [value]="inputPhone" />
                 </div>
                 <div class="input-field">
                     <label>Gender</label>
-                    <input type="text" value="Female" disabled />
+                    <input type="text" [value]="inputGender" disabled />
                 </div>
                 <div class="input-field">
                     <label>Birthday</label>
-                    <input type="text" value="28/05/1991" />
+                    <input type="text" [value]="inputBirthday" />
                 </div>
                 <div class="input-field">
                     <label>Age</label>
-                    <input type="text" value="33" />
+                    <input type="text" [value]="inputAge" />
                 </div>
                 <div class="input-field">
                     <label>Occupation</label>
-                    <input type="text" value="Software Engineer" />
+                    <input type="text" [value]="inputOccupation" />
                 </div>
                 <div class="input-field">
                     <label>Hobbies</label>
-                    <input type="text" value="Soccer, Rock climbing" />
+                    <input type="text" [value]="inputHobbies" />
                 </div>
                 <div class="input-field">
                     <label>Emergency Contact</label>
-                    <input type="tel" value="33111154876" />
+                    <input type="tel" [value]="inputEmergencyContact" />
                 </div>
                 <!-- Upload Section -->
                 <div class="upload-section">
