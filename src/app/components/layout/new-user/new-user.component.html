@@ -1,70 +1,105 @@
-<div class="form max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md">
-    <form>
-        <div class="mb-4">
-            <label for="name" class="block text-sm font-medium text-gray-700">First Name</label>
-            <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-
-        <div class="mb-4">
-            <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
-            <input type="text" name="lastName" id="lastName" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-
-        <div class="mb-4">
-            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-            <input type="email" name="email" id="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-
-        <div class="mb-4">
-            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-            <input type="password" name="password" id="password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-
-        <div class="mb-4">
-            <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
-            <input type="tel" name="phone" id="phone" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-
-        <div class="mb-4">
-            <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
-            <input type="search" name="gender" id="gender" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-
-        <div class="mb-4">
-            <label for="birthday" class="block text-sm font-medium text-gray-700">Birthday</label>
-            <input type="date" name="birthday" id="birthday" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-
-        <div class="mb-4">
-            <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
-            <input type="number" name="age" id="age" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-
-        <div class="mb-4">
-            <label for="occupation" class="block text-sm font-medium text-gray-700">Occupation</label>
-            <input type="text" name="occupation" id="occupation" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-
-        <div class="mb-4">
-            <label for="hobbies" class="block text-sm font-medium text-gray-700">Hobbies</label>
-            <input type="text" name="hobbies" id="hobbies" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-
-        <div class="mb-4">
-            <label for="emergencyContact" class="block text-sm font-medium text-gray-700">Emergency Contact</label>
-            <input type="tel" name="emergencyContact" id="emergencyContact" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-
-        <div class="mb-4">
-            <label for="treatment-day" class="block text-sm font-medium text-gray-700">Treatment Day</label>
-            <input type="datetime-local" name="treatment-day" id="treatment-day" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-
-        <div class="mb-4">
-            <label for="treatments" class="block text-sm font-medium text-gray-700">Treatments</label>
-            <input type="text" name="treatments" id="treatments" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-
-        <button type="submit" class="w-full mt-6 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">Submit</button>
-    </form>
+<div class="modal-overlay fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-auto">
+    <div class="form max-w-4xl w-full p-8 bg-white rounded-lg shadow-xl">
+        <h2 class="text-2xl font-bold text-[#34747b] text-center mb-6">User Information Form</h2>
+        <form class="grid grid-cols-1 sm:grid-cols-2 gap-6" [formGroup]="form">
+            
+            <!-- First Name -->
+            <div class="flex flex-col">
+                <label for="name" class="block text-sm font-medium text-gray-700">First Name</label>
+                <input type="text" name="name" id="name" placeholder="Enter your first name" formControlName="name"
+                    class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#34747b] transition duration-300 ease-in-out hover:border-[#34747b]">
+            </div>
+    
+            <!-- Last Name -->
+            <div class="flex flex-col">
+                <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+                <input type="text" name="lastName" id="lastName" placeholder="Enter your last name" formControlName="lastName"
+                    class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#34747b] transition duration-300 ease-in-out hover:border-[#34747b]">
+            </div>
+    
+            <!-- Email -->
+            <div class="flex flex-col">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" name="email" id="email" placeholder="Enter your email" formControlName="email"
+                    class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#34747b] transition duration-300 ease-in-out hover:border-[#34747b]">
+            </div>
+    
+            <!-- Password -->
+            <div class="flex flex-col">
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter your password" formControlName="password"
+                    class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#34747b] transition duration-300 ease-in-out hover:border-[#34747b]">
+            </div>
+    
+            <!-- Phone -->
+            <div class="flex flex-col">
+                <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+                <input type="tel" name="phone" id="phone" placeholder="Enter your phone number" formControlName="phone"
+                    class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#34747b] transition duration-300 ease-in-out hover:border-[#34747b]">
+            </div>
+    
+            <!-- Gender -->
+            <div class="flex flex-col">
+                <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+                <input type="search" name="gender" id="gender" placeholder="Enter your gender" formControlName="gender"
+                    class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#34747b] transition duration-300 ease-in-out hover:border-[#34747b]">
+            </div>
+    
+            <!-- Birthday -->
+            <div class="flex flex-col">
+                <label for="birthday" class="block text-sm font-medium text-gray-700">Birthday</label>
+                <input type="date" name="birthday" id="birthday" formControlName="birthday"
+                    class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#34747b] transition duration-300 ease-in-out hover:border-[#34747b]">
+            </div>
+    
+            <!-- Age -->
+            <div class="flex flex-col">
+                <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
+                <input type="number" name="age" id="age" placeholder="Enter your age" formControlName="age"
+                    class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#34747b] transition duration-300 ease-in-out hover:border-[#34747b]">
+            </div>
+    
+            <!-- Occupation -->
+            <div class="flex flex-col">
+                <label for="occupation" class="block text-sm font-medium text-gray-700">Occupation</label>
+                <input type="text" name="occupation" id="occupation" placeholder="Enter your occupation" formControlName="occupation"
+                    class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#34747b] transition duration-300 ease-in-out hover:border-[#34747b]">
+            </div>
+    
+            <!-- Hobbies -->
+            <div class="flex flex-col">
+                <label for="hobbies" class="block text-sm font-medium text-gray-700">Hobbies</label>
+                <input type="text" name="hobbies" id="hobbies" placeholder="Enter your hobbies" formControlName="hobbies"
+                    class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#34747b] transition duration-300 ease-in-out hover:border-[#34747b]">
+            </div>
+    
+            <!-- Emergency Contact -->
+            <div class="flex flex-col">
+                <label for="emergencyContact" class="block text-sm font-medium text-gray-700">Emergency Contact</label>
+                <input type="tel" name="emergencyContact" id="emergencyContact" formControlName="emergencyContact"
+                    placeholder="Enter an emergency contact number"
+                    class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#34747b] transition duration-300 ease-in-out hover:border-[#34747b]">
+            </div>
+    
+            <!-- Treatment Day -->
+            <div class="flex flex-col">
+                <label for="treatment-day" class="block text-sm font-medium text-gray-700">Treatment Day</label>
+                <input type="datetime-local" name="treatment-day" id="treatment-day" formControlName="treatment_day"
+                    class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#34747b] transition duration-300 ease-in-out hover:border-[#34747b]">
+            </div>
+    
+            <!-- Treatments -->
+            <div class="flex flex-col">
+                <label for="treatments" class="block text-sm font-medium text-gray-700">Treatments</label>
+                <input type="text" name="treatments" id="treatments" placeholder="Enter any treatments" formControlName="treatments"
+                    class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#34747b] transition duration-300 ease-in-out hover:border-[#34747b]">
+            </div>
+    
+            <!-- Submit Button -->
+            <button type="submit" (click)="addNewUser()"
+                class="w-full py-3 bg-[#34747b] text-white font-semibold rounded-lg shadow-md hover:bg-[#143e42] focus:outline-none focus:ring-2 focus:ring-[#34747b] transition duration-300 ease-in-out">
+                Submit
+            </button>
+        </form>
+    </div>
 </div>
