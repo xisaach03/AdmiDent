@@ -47,6 +47,11 @@ export class GalleryComponent implements OnInit {
           console.log('Error al cargar imagenes' , error)
         }
       )
+      this.clientService.getClients().subscribe(
+        (data) => {
+          this.clients = data
+        }
+      )
   }
 
   onSubmit(): void {
