@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-<<<<<<< Updated upstream
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment.development';
-=======
+
 import { ClientService } from '../../../../services/client.service';
 import { Router } from '@angular/router';
 import { TreatmentModalService } from '../../../../services/treatment-modal.service';
 import { CreateTreatment } from "../../../layout/create-treatment/create-treatment.component";
 import { EditTreatment } from "../../../layout/edit-treatment/edit-treatment.component";
->>>>>>> Stashed changes
 
 
 @Component({
@@ -20,8 +18,8 @@ import { EditTreatment } from "../../../layout/edit-treatment/edit-treatment.com
 })
 export class LADPatiensTreatmentComponent {
 
-<<<<<<< Updated upstream
-  constructor(private http: HttpClient) { }
+constructor( private http : HttpClient ,private clientService : ClientService, private router: Router, private tms: TreatmentModalService) { }
+
 
   ngOnInit() {
     const patientsElement = document.getElementById('patients');
@@ -48,7 +46,7 @@ export class LADPatiensTreatmentComponent {
     );
 
   }
-=======
+
   clients: any[] = [];
   selectedClientId: string | null = null;
   inputName: string = '';
@@ -56,14 +54,6 @@ export class LADPatiensTreatmentComponent {
   addModal: boolean = false;
   editModal: boolean = false;
 
-  constructor( private clientService : ClientService, private router: Router, private tms: TreatmentModalService) { }
-
-  ngOnInit(): void {
-    this.clientService.getClients().subscribe(data => {
-      this.clients = Array.isArray(data) ? data : [];
-      console.log(this.clients)
-    });
-  }
 
   onSelectClient(client: any): void {
     this.selectedClientId = client._id;
@@ -103,5 +93,4 @@ export class LADPatiensTreatmentComponent {
     this.editModal = false;
   }
 
->>>>>>> Stashed changes
 }

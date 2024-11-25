@@ -15,7 +15,7 @@ import { ClientService } from '../../../../services/client.service';
   styleUrl: './ladpatiens-sum.component.scss'
 })
 
-export class LADPatiensSumComponent {
+export class LADPatiensSumComponent implements OnInit {
 
   clients: any[] = [];
   selectedClientId: string | null = null;

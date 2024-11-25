@@ -5,20 +5,13 @@
             <input type="text" placeholder="" class="search-bar" />
             <button class="add-new">Add New</button>
         </div>
-<<<<<<< Updated upstream
-        <div class="patients-list"  id="patients">
-            <div class="patient-item">Sarah Davis</div>
-            <div class="patient-item">Noah Davis</div>
-            <div class="patient-item">James Davis</div>
-            <div class="patient-item">Camila Davis</div>
-=======
+
         <div class="patients-list">
             @for (client of clients; track $index) {
             <div class="patient-item" [class.selected]="client._id === selectedClientId" (click)="onSelectClient(client)">
                 {{client.firstName}}
             </div>
             }
->>>>>>> Stashed changes
         </div>
         <div class="treatment-plan">
             <div class="title">Treatment Plan</div>
