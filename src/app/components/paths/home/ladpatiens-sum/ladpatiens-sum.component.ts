@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../../../layout/navbar/navbar.component';
 import { SidebarComponent } from '../../../layout/sidebar/sidebar.component';
-<<<<<<< Updated upstream
-import { RouterOutlet } from '@angular/router';
+
 import { MaterialModule } from '../../../../modules/material/material.module';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment.development';
-=======
+
 import { Router, RouterOutlet } from '@angular/router';
 import { ClientService } from '../../../../services/client.service';
->>>>>>> Stashed changes
 
 
 @Component({
@@ -22,7 +20,7 @@ import { ClientService } from '../../../../services/client.service';
 
 export class LADPatiensSumComponent implements OnInit{
 
-  constructor(private http: HttpClient) {}
+  constructor( private clientService : ClientService, private router: Router , private http: HttpClient ) { }
 
   ngOnInit() {
   const patientsElement = document.getElementById('patients');
@@ -64,14 +62,7 @@ export class LADPatiensSumComponent implements OnInit{
   inputHobbies: string = '';
   inputEmergencyContact: string = '';
 
-  constructor( private clientService : ClientService, private router: Router ) { }
 
-  ngOnInit(): void {
-    this.clientService.getClients().subscribe(data => {
-      this.clients = Array.isArray(data) ? data : [];
-      console.log(this.clients)
-    });
-  }
 
   onSelectClient(client: any): void {
     this.selectedClientId = client._id;
