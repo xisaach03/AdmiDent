@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule , FormBuilder, Validators} from '@angular/forms';
-import { error } from 'console';
 
 
 @Component({

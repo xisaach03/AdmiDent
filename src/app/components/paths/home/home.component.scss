@@ -1,9 +1,9 @@
-div{
+.main{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 700px;
+    height: 500px;
 }
 
 h1{
@@ -13,4 +13,35 @@ h1{
 p{
     color: gray;
     font-size:x-large   ;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    .tab-button {
+        padding: 10px 15px;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 4px;
+        background-color: #a6886b;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid #d3d3d3;
+        max-height: 45px;
+
+        &:hover {
+            background-color: #34747B;
+            color: #fff;
+        }
+
+        &.active {
+            background-color: #34747B;
+            color: #fff;
+            border: none;
+        }
+    }
 }

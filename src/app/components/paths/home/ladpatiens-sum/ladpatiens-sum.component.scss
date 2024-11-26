@@ -1,8 +1,10 @@
+
 .container {
     display: flex;
     height: 90vh;
     font-family: Arial, sans-serif;
     background-color: #aec1c5;
+    width: max-content;
 }
 
 .sidebar {
@@ -53,6 +55,7 @@
         cursor: pointer;
         transition: all 0.3s ease;
         border: 1px solid #d3d3d3;
+        max-height: 45px;
     }
 
     #edit {

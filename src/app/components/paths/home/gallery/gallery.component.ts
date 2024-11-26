@@ -33,46 +33,50 @@ export class GalleryComponent implements OnInit {
   inputLastname: string = '';
 
   constructor(private fileUpload: FileUploadService, private formBuilder: FormBuilder, private imgService: ImagesService, private clientService: ClientService, private router: Router) {
-    
+
     this.form = this.formBuilder.group({
       image: ['', [Validators.required]]
     });
   }
   ngOnInit(): void {
-      this.imgService.getImages().subscribe(
-        (data) => {
-          this.img = data
-        },
-        (error) => {
-          console.log('Error al cargar imagenes' , error)
-        }
-      )
+    this.imgService.getImages().subscribe(
+      (data) => {
+        this.img = data
+      },
+      (error) => {
+        console.log('Error al cargar imagenes', error)
+      }
+    )
+    this.clientService.getClients().subscribe(data => {
+      this.clients = Array.isArray(data) ? data : [];
+      console.log(this.clients)
+    });
   }
 
   onSubmit(): void {
     if (this.form.valid) {
-        const file = this.form.get('image')?.value;
-        console.log('Imagen a subir:', file); // Verifica que el archivo está en el formulario
-        
-        this.fileUpload.uploadImage(this.form.getRawValue()).subscribe({
-            next: (response) => {
-                console.log(response); // Verifica la respuesta del servidor
+      const file = this.form.get('image')?.value;
+      console.log('Imagen a subir:', file); // Verifica que el archivo está en el formulario
 
-                // Opción 1: Actualizar toda la lista de imágenes desde el servicio
-                this.imgService.getImages().subscribe((updatedImages) => {
-                    this.img = updatedImages;
-                    console.log('Lista de imágenes actualizada:', this.img);
-                });
+      this.fileUpload.uploadImage(this.form.getRawValue()).subscribe({
+        next: (response) => {
+          console.log(response); // Verifica la respuesta del servidor
 
-            },
-            error: (err) => {
-                console.log('Error al subir el archivo:', err);
-            }
-        });
+          // Opción 1: Actualizar toda la lista de imágenes desde el servicio
+          this.imgService.getImages().subscribe((updatedImages) => {
+            this.img = updatedImages;
+            console.log('Lista de imágenes actualizada:', this.img);
+          });
+
+        },
+        error: (err) => {
+          console.log('Error al subir el archivo:', err);
+        }
+      });
     } else {
-        console.log('Formulario no válido');
+      console.log('Formulario no válido');
     }
-}
+  }
 
 
   // Método para manejar el cambio de archivo

@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-<<<<<<< Updated upstream
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment.development';
-=======
 import { ClientService } from '../../../../services/client.service';
 import { Router } from '@angular/router';
 import { TreatmentModalService } from '../../../../services/treatment-modal.service';
 import { CreateTreatment } from "../../../layout/create-treatment/create-treatment.component";
 import { EditTreatment } from "../../../layout/edit-treatment/edit-treatment.component";
->>>>>>> Stashed changes
+import Client from '../../../../types/client';
 
 
 @Component({
@@ -20,41 +18,13 @@ import { EditTreatment } from "../../../layout/edit-treatment/edit-treatment.com
 })
 export class LADPatiensTreatmentComponent {
 
-<<<<<<< Updated upstream
-  constructor(private http: HttpClient) { }
-
-  ngOnInit() {
-    const patientsElement = document.getElementById('patients');
-    const url = `${environment.apiUrl}home`;
-
-    // Realizamos la llamada HTTP y nos suscribimos al observable
-    this.http.get<any[]>(url).subscribe(
-      (patientsList) => {
-        console.log('Patient list:', patientsList);
-
-        // Iteramos sobre la lista de pacientes
-        patientsList.forEach((patient) => {
-          console.log('Patient:', patient.name);
-          // Agregamos cada paciente al contenedor
-          const patientItem = document.createElement('div');
-          patientItem.className = 'patient-item selected';
-          patientItem.textContent = patient.name;
-          patientsElement?.appendChild(patientItem);
-        });
-      },
-      (error) => {
-        console.error('Error fetching patient list:', error);
-      }
-    );
-
-  }
-=======
   clients: any[] = [];
   selectedClientId: string | null = null;
   inputName: string = '';
   inputLastname: string = '';
   addModal: boolean = false;
   editModal: boolean = false;
+  cliente: Client | undefined;
 
   constructor( private clientService : ClientService, private router: Router, private tms: TreatmentModalService) { }
 
@@ -69,6 +39,7 @@ export class LADPatiensTreatmentComponent {
     this.selectedClientId = client._id;
     this.inputName = client.firstName;
     this.inputLastname = client.lastName;
+    this.cliente = client;
   }
 
   goToGall() {
@@ -103,5 +74,4 @@ export class LADPatiensTreatmentComponent {
     this.editModal = false;
   }
 
->>>>>>> Stashed changes
 }

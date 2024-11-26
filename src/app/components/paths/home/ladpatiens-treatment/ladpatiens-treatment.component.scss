@@ -170,6 +170,7 @@
         cursor: pointer;
         transition: all 0.3s ease;
         border: 1px solid #d3d3d3;
+        max-height: 45px;
 
         &:hover {
             background-color: #34747B;
@@ -286,6 +287,8 @@ button.upload-btn {
 
 .treatment-history {
     padding: 60px;
+    max-height: 650px;
+    overflow-x: auto;
 
     h4 {
         font-size: 1.2rem;
@@ -321,7 +324,7 @@ button.upload-btn {
         border-radius: 8px;
         position: relative;
         margin-bottom: 20px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);    
 
         h5 {
             font-size: 1rem;

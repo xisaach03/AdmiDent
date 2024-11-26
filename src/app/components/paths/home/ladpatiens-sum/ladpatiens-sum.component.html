@@ -5,20 +5,12 @@
             <input type="text" placeholder="" class="search-bar" />
             <button class="add-new">Add New</button>
         </div>
-<<<<<<< Updated upstream
-        <div class="patients-list"  id="patients">
-            <div class="patient-item">Sarah Davis</div>
-            <div class="patient-item">Noah Davis</div>
-            <div class="patient-item">James Davis</div>
-            <div class="patient-item">Camila Davis</div>
-=======
         <div class="patients-list">
             @for (client of clients; track $index) {
             <div class="patient-item" [class.selected]="client._id === selectedClientId" (click)="onSelectClient(client)">
                 {{client.firstName}}
             </div>
             }
->>>>>>> Stashed changes
         </div>
         <div class="treatment-plan">
             <div class="title">Treatment Plan</div>
@@ -41,9 +33,9 @@
         <div class="header">
             <h3>Treatment Plan - {{inputName}} {{inputLastname}}</h3>
             <div class="tabs">
-                <button class="tab-button" (click)="goToSumm()" >Summary</button>
+                <button class="tab-button active" (click)="goToSumm()" >Summary</button>
                 <button class="tab-button" (click)="goToGall()">Gallery</button>
-                <button class="tab-button active" (click)="goToTreat()">Treatment</button>
+                <button class="tab-button" (click)="goToTreat()">Treatment</button>
             </div>
         </div>
 
@@ -90,14 +82,6 @@
                 <div class="input-field">
                     <label>Emergency Contact</label>
                     <input type="tel" [value]="inputEmergencyContact" />
-                </div>
-                <!-- Upload Section -->
-                <div class="upload-section">
-                    <div class="upload-box">
-                        Upload Clinical History
-                    </div>
-                    <span class="download-link">Download CH</span>
-                    <button class="upload-btn">Update</button>
                 </div>
             </div>
         </div>
