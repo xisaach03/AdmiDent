@@ -13,6 +13,5 @@ export interface Client {
         occupation: string;
         hobbies: string;
         emergencyContact: string;
-        treatment_day: string;
-        treatments: Treatment[];
+        Treatments: Treatment[];
 }

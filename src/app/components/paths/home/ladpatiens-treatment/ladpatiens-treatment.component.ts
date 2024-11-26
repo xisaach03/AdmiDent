@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { TreatmentModalService } from '../../../../services/treatment-modal.service';
 import { CreateTreatment } from "../../../layout/create-treatment/create-treatment.component";
 import { EditTreatment } from "../../../layout/edit-treatment/edit-treatment.component";
-import Client from '../../../../types/client';
+import { Client } from '../../../../types/client';
 import { NewUserComponent } from '../../../layout/new-user/new-user.component';
 
 
@@ -19,35 +19,6 @@ import { NewUserComponent } from '../../../layout/new-user/new-user.component';
 })
 export class LADPatiensTreatmentComponent {
 
-constructor( private http : HttpClient ,private clientService : ClientService, private router: Router, private tms: TreatmentModalService) { }
-
-
-  ngOnInit() {
-    const patientsElement = document.getElementById('patients');
-    const url = `${environment.apiUrl}home`;
-
-    // Realizamos la llamada HTTP y nos suscribimos al observable
-    this.http.get<any[]>(url).subscribe(
-      (patientsList) => {
-        console.log('Patient list:', patientsList);
-
-        // Iteramos sobre la lista de pacientes
-        patientsList.forEach((patient) => {
-          console.log('Patient:', patient.name);
-          // Agregamos cada paciente al contenedor
-          const patientItem = document.createElement('div');
-          patientItem.className = 'patient-item selected';
-          patientItem.textContent = patient.name;
-          patientsElement?.appendChild(patientItem);
-        });
-      },
-      (error) => {
-        console.error('Error fetching patient list:', error);
-      }
-    );
-
-  }
-
   clients: any[] = [];
   selectedClientId: string | null = null;
   inputName: string = '';
@@ -57,6 +28,20 @@ constructor( private http : HttpClient ,private clientService : ClientService, p
   cliente: Client | undefined;
   isShowing : boolean = false;
 
+constructor( private http : HttpClient ,private clientService : ClientService, private router: Router, private tms: TreatmentModalService) { }
+
+
+  ngOnInit() {
+    const patientsElement = document.getElementById('patients');
+    const url = `${environment.apiUrl}home`;
+
+    // Realizamos la llamada HTTP y nos suscribimos al observable
+    this.clientService.getClients().subscribe(data => {
+      this.clients = Array.isArray(data) ? data : [];
+      console.log(this.clients)
+    });
+
+  }
 
   onSelectClient(client: any): void {
     this.selectedClientId = client._id;
