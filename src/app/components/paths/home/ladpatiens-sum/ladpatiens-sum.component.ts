@@ -5,12 +5,13 @@ import { Router, RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment.development';
 import { ClientService } from '../../../../services/client.service';
+import { NewUserComponent } from '../../../layout/new-user/new-user.component';
 
 
 @Component({
   selector: 'app-ladpatiens-sum',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, SidebarComponent],
+  imports: [RouterOutlet, NavbarComponent, SidebarComponent , NewUserComponent],
   templateUrl: './ladpatiens-sum.component.html',
   styleUrl: './ladpatiens-sum.component.scss'
 })
@@ -30,6 +31,7 @@ export class LADPatiensSumComponent implements OnInit {
   inputOccupation: string = '';
   inputHobbies: string = '';
   inputEmergencyContact: string = '';
+  isShowing : boolean = false;
 
   constructor(private http: HttpClient, private clientService: ClientService, private router: Router) { }
 
@@ -84,6 +86,15 @@ export class LADPatiensSumComponent implements OnInit {
 
   goToTreat() {
     this.router.navigate(['/treatment'])
+  }
+
+
+  showModal(){
+    this.isShowing = true
+  } 
+
+  closeModal(){
+    this.isShowing = false
   }
 
 }

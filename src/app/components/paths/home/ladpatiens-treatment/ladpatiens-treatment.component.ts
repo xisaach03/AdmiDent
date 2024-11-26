@@ -7,12 +7,13 @@ import { Router } from '@angular/router';
 import { TreatmentModalService } from '../../../../services/treatment-modal.service';
 import { CreateTreatment } from "../../../layout/create-treatment/create-treatment.component";
 import { EditTreatment } from "../../../layout/edit-treatment/edit-treatment.component";
+import { NewUserComponent } from '../../../layout/new-user/new-user.component';
 
 
 @Component({
   selector: 'app-ladpatiens-treatment',
   standalone: true,
-  imports: [CreateTreatment, EditTreatment],
+  imports: [CreateTreatment, EditTreatment ,NewUserComponent],
   templateUrl: './ladpatiens-treatment.component.html',
   styleUrl: './ladpatiens-treatment.component.scss'
 })
@@ -53,6 +54,8 @@ constructor( private http : HttpClient ,private clientService : ClientService, p
   inputLastname: string = '';
   addModal: boolean = false;
   editModal: boolean = false;
+  isShowing : boolean = false;
+
 
 
   onSelectClient(client: any): void {
@@ -93,4 +96,11 @@ constructor( private http : HttpClient ,private clientService : ClientService, p
     this.editModal = false;
   }
 
+  showModal(){
+    this.isShowing = true
+  } 
+
+  closeModal(){
+    this.isShowing = false
+  }
 }

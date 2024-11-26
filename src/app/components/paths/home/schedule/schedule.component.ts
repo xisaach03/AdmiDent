@@ -6,6 +6,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { CommonModule } from '@angular/common';
 import { ClientService } from '../../../../services/client.service';
+import { NewUserComponent } from '../../../layout/new-user/new-user.component';
 
 // Interfaz para un tratamiento
 interface Treatment {
@@ -24,7 +25,7 @@ interface ClientResponse {
 @Component({
   selector: 'app-schedule',
   standalone: true,
-  imports: [FullCalendarModule, CommonModule],
+  imports: [FullCalendarModule, CommonModule, NewUserComponent],
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss'],
 })
@@ -32,6 +33,7 @@ export class ScheduleComponent implements OnInit {
   selectedDate: Date = new Date(); // Fecha seleccionada por el usuario
   dailyEvents: { title: string; start: string }[] = []; // Eventos filtrados por día
   events: { title: string; start: string }[] = []; // Todos los eventos del calendario
+  isShowing : boolean = false;
 
   constructor(private clientService: ClientService) {}
 
@@ -48,6 +50,7 @@ export class ScheduleComponent implements OnInit {
   // Manejar clics en una fecha del calendario
   handleDateClick(arg: any) {
     this.selectedDate = new Date(arg.dateStr);
+    this.selectedDate.setDate(this.selectedDate.getDate() + 1 )
     this.filterEventsByDay(); // Filtra los eventos para la nueva fecha seleccionada
   }
 
@@ -106,5 +109,13 @@ export class ScheduleComponent implements OnInit {
         console.error('Error fetching clients:', error);
       }
     );
+  }
+
+  showModal(){
+    this.isShowing = true
+  } 
+
+  closeModal(){
+    this.isShowing = false
   }
 }

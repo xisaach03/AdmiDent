@@ -4,9 +4,12 @@
     <div class="flex justify-between p-5 mt-5 mb-5 gap-5 w-full">
       <input type="text" name="name" id="name" placeholder="Search by name"
         class="w-3/4 rounded-3xl h-12 p-5 border-gray-300 border-2 focus:outline-none">
-      <button class="text-white text-lg text-center w-36 p-2 rounded-xl" style="background-color:#A6886B;"> Add New</button>
+      <button class="text-white text-lg text-center w-36 p-2 rounded-xl" style="background-color:#A6886B;" (click)="showModal()"> Add New</button>
     </div>
 
+    @if(isShowing === true){
+      <app-new-user (closeModal)="closeModal()"></app-new-user>
+  }
     <!-- Lista de eventos para el día seleccionado -->
     <div class="event-list space-y-2 w-full px-4">
       <h3 class="text-xl font-semibold mb-2">{{ selectedDate | date:'fullDate' }}</h3>
