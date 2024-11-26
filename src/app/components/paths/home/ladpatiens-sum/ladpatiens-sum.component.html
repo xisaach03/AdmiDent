@@ -3,8 +3,13 @@
     <div class="sidebar">
         <div class="patient-search">
             <input type="text" placeholder="" class="search-bar" />
-            <button class="add-new">Add New</button>
+            <button class="add-new" (click)="showModal()">Add New</button>
         </div>
+      
+        @if(isShowing === true){
+            <app-new-user (closeModal)="closeModal()"></app-new-user>
+        }
+      
         <div class="patients-list">
             @for (client of clients; track $index) {
             <div class="patient-item" [class.selected]="client._id === selectedClientId" (click)="onSelectClient(client)">

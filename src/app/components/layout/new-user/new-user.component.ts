@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule , FormBuilder, Validators} from '@angular/forms';
+import { error } from 'console';
+import { ClientService } from '../../../services/client.service';
+import { NewUserService } from '../../../services/new-user.service';
 
 
 @Component({
@@ -14,33 +17,40 @@ export class NewUserComponent{
   @Output() closeModal = new EventEmitter<void>(); // Para emitir evento de cierre
   form : FormGroup;
 
-  constructor( private formBuilder : FormBuilder){
+
+  constructor( private formBuilder : FormBuilder , private clientService : ClientService , private newUserService : NewUserService){
 
     this.form = this.formBuilder.group({
-      name : ['' , [Validators.required ,Validators.minLength(3)]],
-      lastName : ['' , [Validators.required , Validators.minLength(3)]],
-      email : ['' , [Validators.required , Validators.email]],
-      password :  ['' , [Validators.required , Validators.minLength(6)]],
-      phone :  ['' , [Validators.required , Validators.minLength(10)]],
-      gender :  ['' , [Validators.required]],
-      birthday :  ['' , [Validators.required]],
-      age :  ['' , [Validators.required]],
-      occupation :  ['' , [Validators.required]],
-      hobbies :  ['' , [Validators.required]],
-      emergencyContact :  ['' , [Validators.required , Validators.minLength(10)]],
-      treatment_day :  ['' , [Validators.required]],
-      treatments :  ['' , [Validators.required]],
-    })
+      firstName: ['', [Validators.required]], // Campo requerido
+      lastName: ['', [Validators.required]], // Campo requerido
+      email: ['', [Validators.required, Validators.email]], // Campo requerido con validación de correo
+      password: ['', [Validators.required, Validators.minLength(6)]], // Campo requerido con longitud mínima
+      phone: [''], // Campo opcional
+      gender: [''], // Campo opcional
+      Birthday: [''], // Campo opcional (fecha de nacimiento)
+      Age: [null], // Campo opcional (número)
+      Occupation: [''], // Campo opcional
+      Hobbies: [''], // Campo opcional
+      EmergencyContact: [''], // Campo opcional
+      Treatments: [[]] // Campo opcional (array vacío por defecto)
+    });
+    
   }
 
 
   addNewUser(){
     if(this.form.valid){
-      console.log(this.form.getRawValue())
+      this.clientService.createClients(this.form.getRawValue()).subscribe({
+        next : (data) => {
+          console.log('Todo bien')
+        }
+    })
     }else{
       console.log('lol')
     }
   }
   
-  
+  close(){
+    this.closeModal.emit();
+  }
 }

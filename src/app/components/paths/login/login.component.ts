@@ -2,17 +2,20 @@ import { Component } from '@angular/core';
 import { LoginService } from '../../../services/login.service'; 
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment.development';
+import { MaterialModule } from '../../../modules/material/material.module';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule , MaterialModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
 
   form: FormGroup;
+  apiUrl : string = `${environment.apiUrl}auth/google`
 
   constructor(
     private loginService: LoginService, 

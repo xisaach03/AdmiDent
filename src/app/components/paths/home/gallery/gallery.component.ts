@@ -5,16 +5,19 @@ import { ImagesService } from '../../../../services/images.service';
 import { Image } from '../../../../types/image';
 import { Router } from '@angular/router';
 import { ClientService } from '../../../../services/client.service';
+import { NewUserComponent } from '../../../layout/new-user/new-user.component';
 
 interface Treatment {
   plan: string;
   url: string;
 }
 
+
+
 @Component({
   selector: 'app-gallery',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule,NewUserComponent],
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss']
 })
@@ -25,6 +28,8 @@ export class GalleryComponent implements OnInit {
   img: Image[] = [];
   currentPage = 0; // Página actual
   imagesPerPage = 6; // Número de imágenes por página
+
+  isShowing : boolean = false;
 
   //Estos son para poder modificar con dom dinámicamente los clientes:
   clients: any[] = [];
@@ -39,18 +44,28 @@ export class GalleryComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.imgService.getImages().subscribe(
-      (data) => {
-        this.img = data
-      },
-      (error) => {
-        console.log('Error al cargar imagenes', error)
-      }
-    )
-    this.clientService.getClients().subscribe(data => {
-      this.clients = Array.isArray(data) ? data : [];
-      console.log(this.clients)
-    });
+      this.imgService.getImages().subscribe(
+        (data) => {
+          this.img = data
+        },
+        (error) => {
+          console.log('Error al cargar imagenes' , error)
+        }
+      )
+      this.clientService.getClients().subscribe(
+        (data) => {
+          this.clients = Array.isArray(data) ? data : [];
+          //this.clients = data
+        }
+      )
+  }
+
+  showModal(){
+    this.isShowing = true
+  } 
+
+  closeModal(){
+    this.isShowing = false
   }
 
   onSubmit(): void {
