@@ -97,7 +97,7 @@ export class ScheduleComponent implements OnInit {
         // Mapear los tratamientos de todos los clientes a eventos
         this.events = response.flatMap(client => {
           return client.Treatments.map(treatment => ({
-            title: `${client.lastName}: ${treatment.treatment}`, // Nombre del cliente + tratamiento
+            title: `${client.firstName} ${client.lastName}`, // Nombre del cliente + tratamiento
             start: treatment.date, // Fecha del tratamiento
           }));
         });
