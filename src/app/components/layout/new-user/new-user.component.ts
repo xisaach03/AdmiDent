@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { FormGroup, FormsModule, ReactiveFormsModule , FormBuilder, Validators} from '@angular/forms';
 import { error } from 'console';
 import { ClientService } from '../../../services/client.service';
+import { NewUserService } from '../../../services/new-user.service';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class NewUserComponent{
   @Output() closeModal = new EventEmitter<void>(); // Para emitir evento de cierre
   form : FormGroup;
 
-  constructor( private formBuilder : FormBuilder , private clientService : ClientService){
+
+  constructor( private formBuilder : FormBuilder , private clientService : ClientService , private newUserService : NewUserService){
 
     this.form = this.formBuilder.group({
       firstName: ['', [Validators.required]], // Campo requerido
@@ -48,5 +50,7 @@ export class NewUserComponent{
     }
   }
   
-  
+  close(){
+    this.closeModal.emit();
+  }
 }

@@ -6,9 +6,13 @@
         <div class="flex justify-between p-5 mt-5 mb-5 gap-5 w-[500px]">
             <input type="text" name="name" id="name" placeholder="Patient's name"
                 class="w-[70%] rounded-3xl h-12 p-5 border-gray-300 border-[1.5px] focus:outline-none">
-            <button class=" text-white  text-lg text-center w-[150px] p-2 rounded-xl" style="background-color:#A6886B;">
+            <button (click)="showModal()" class=" text-white  text-lg text-center w-[150px] p-2 rounded-xl" style="background-color:#A6886B;">
                 Add New</button>
         </div>
+
+        @if(isShowing === true){
+            <app-new-user (closeModal)="closeModal()"></app-new-user>
+        }
 
         <div class="flex flex-col shadow-lg rounded-lg border-gray-200 border-[1.5px] w-[450px] ">
             @for (client of clients; track $index) {
@@ -80,7 +84,7 @@
         
                     <!-- Mostrar el formulario solo si hay espacio vacío (menos de 6 imágenes) -->
                     @if (visibleImages.length < 6) {
-                        <div class="w-[400px] h-[300px] flex items-center justify-center bg-gray-200 rounded-lg shadow-md">
+                        <div class="w-[330px] h-[300px] flex items-center justify-center bg-gray-200 rounded-lg shadow-md">
                             <form (ngSubmit)="onSubmit()" class="w-full flex flex-col items-center">
                                 <!-- Estilizamos el campo de archivo con un contenedor personalizado -->
                                 <label for="image"
