@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateTreatmentComponent } from './create-treatment.component';
+import { CreateTreatment } from './create-treatment.component';
 
-describe('CreateTreatmentComponent', () => {
-  let component: CreateTreatmentComponent;
-  let fixture: ComponentFixture<CreateTreatmentComponent>;
+describe('CreateTreatment', () => {
+  let component: CreateTreatment;
+  let fixture: ComponentFixture<CreateTreatment>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreateTreatmentComponent]
+      imports: [CreateTreatment]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CreateTreatmentComponent);
+    fixture = TestBed.createComponent(CreateTreatment);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -21,3 +21,4 @@ describe('CreateTreatmentComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

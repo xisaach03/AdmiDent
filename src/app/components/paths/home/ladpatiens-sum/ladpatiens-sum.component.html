@@ -5,13 +5,11 @@
             <input type="text" placeholder="" class="search-bar" />
             <button class="add-new" (click)="showModal()">Add New</button>
         </div>
-
+      
         @if(isShowing === true){
             <app-new-user (closeModal)="closeModal()"></app-new-user>
         }
-
-
-
+      
         <div class="patients-list">
             @for (client of clients; track $index) {
             <div class="patient-item" [class.selected]="client._id === selectedClientId" (click)="onSelectClient(client)">
@@ -40,9 +38,9 @@
         <div class="header">
             <h3>Treatment Plan - {{inputName}} {{inputLastname}}</h3>
             <div class="tabs">
-                <button class="tab-button" (click)="goToSumm()" >Summary</button>
+                <button class="tab-button active" (click)="goToSumm()" >Summary</button>
                 <button class="tab-button" (click)="goToGall()">Gallery</button>
-                <button class="tab-button active" (click)="goToTreat()">Treatment</button>
+                <button class="tab-button" (click)="goToTreat()">Treatment</button>
             </div>
         </div>
 
@@ -89,14 +87,6 @@
                 <div class="input-field">
                     <label>Emergency Contact</label>
                     <input type="tel" [value]="inputEmergencyContact" />
-                </div>
-                <!-- Upload Section -->
-                <div class="upload-section">
-                    <div class="upload-box">
-                        Upload Clinical History
-                    </div>
-                    <span class="download-link">Download CH</span>
-                    <button class="upload-btn">Update</button>
                 </div>
             </div>
         </div>

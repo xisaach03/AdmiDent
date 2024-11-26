@@ -1,3 +1,6 @@
+
+import { Treatment } from "./treatment";
+
 export interface Client {
         name: string;
         lastName: string;
@@ -11,5 +14,5 @@ export interface Client {
         hobbies: string;
         emergencyContact: string;
         treatment_day: string;
-        treatments: string[];
+        treatments: Treatment[];
 }

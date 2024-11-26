@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment.development';
-
 import { ClientService } from '../../../../services/client.service';
 import { Router } from '@angular/router';
 import { TreatmentModalService } from '../../../../services/treatment-modal.service';
 import { CreateTreatment } from "../../../layout/create-treatment/create-treatment.component";
 import { EditTreatment } from "../../../layout/edit-treatment/edit-treatment.component";
+import Client from '../../../../types/client';
 import { NewUserComponent } from '../../../layout/new-user/new-user.component';
 
 
@@ -54,14 +54,15 @@ constructor( private http : HttpClient ,private clientService : ClientService, p
   inputLastname: string = '';
   addModal: boolean = false;
   editModal: boolean = false;
+  cliente: Client | undefined;
   isShowing : boolean = false;
-
 
 
   onSelectClient(client: any): void {
     this.selectedClientId = client._id;
     this.inputName = client.firstName;
     this.inputLastname = client.lastName;
+    this.cliente = client;
   }
 
   goToGall() {

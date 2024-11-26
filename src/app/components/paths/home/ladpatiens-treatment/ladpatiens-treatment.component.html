@@ -5,11 +5,11 @@
             <input type="text" value="" class="search-bar" />
             <button class="add-new" (click)="showModal()">Add New</button>
         </div>
-
+      
         @if(isShowing === true){
             <app-new-user (closeModal)="closeModal()"></app-new-user>
         }
-
+      
         <div class="patients-list">
             @for (client of clients; track $index) {
             <div class="patient-item" [class.selected]="client._id === selectedClientId" (click)="onSelectClient(client)">
@@ -56,34 +56,15 @@
                 <input type="text" placeholder="Add progress" />
                 <button class="add-btn" (click)="openAddModal()">Add</button>
             </div>
-            <div class="treatment-entry">
-                <h3>Sept 20, 2024</h3>
-                <p>
-                    Bracket on the upper right canine (#13) was slightly loose and was
-                    re-bonded. The upper archwire (0.018 x 0.025 stainless steel) was
-                    removed. A new rectangular NiTi archwire (0.019 x 0.025) was placed
-                    to continue alignment and leveling. Power chain added from upper
-                    right molar (#16) to upper left molar (#26) to close remaining spaces.
-                </p>
-                <button class="edit-entry" (click)="openEditModal()">Edit</button>
-            </div>
-            <div class="treatment-entry">
-                <h3>Aug 14, 2024</h3>
-                <p>
-                    Elastics (Class II, 3/16", 6 oz) are showing good compliance and bite
-                    correction. New elastics were prescribed (same size and force) with
-                    instructions to continue wearing them full-time to correct overjet.
-                    Patient was instructed to wear elastics as prescribed.
-                </p>
-                <button class="edit-entry" (click)="openEditModal()">Edit</button>
-            </div>
-        </div>
-        <div class="pagination">
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>...</button>
-            <button>5</button>
+            @if (selectedClientId) {
+                @for (client of cliente!.Treatments; track $index) {
+                    <div class="treatment-entry">
+                        <h3>{{client.date}}</h3>
+                        <p>{{client.treatment}}</p>
+                        <button class="edit-entry" (click)="openEditModal()">Edit</button>
+                    </div>
+                }
+            }
         </div>
     </div>
 </div>
