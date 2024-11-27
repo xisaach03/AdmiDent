@@ -22,7 +22,7 @@ export const routes: Routes = [
     { path: '/treatment', component: LADPatiensTreatmentComponent , canActivate : [authGuard]},
     { path: '/gallery' , component: GalleryComponent , canActivate : [authGuard] },
     { path: '/schedule' , component: ScheduleComponent , canActivate : [authGuard]},
-    {path: '**', component: NotFoundComponent} 
+    { path: '**', component: NotFoundComponent } 
 ]
 
 @NgModule({
