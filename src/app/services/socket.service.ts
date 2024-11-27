@@ -10,7 +10,7 @@ export class SocketService {
   private readonly SERVER_URL = environment.apiUrl;
 
   constructor() { 
-    if (typeof window === 'undefined') return;
+    //if (typeof window === 'undefined') return;
     this.socket = io(this.SERVER_URL);
   }
 
