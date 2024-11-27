@@ -13,10 +13,12 @@ export class FileUploadService {
   constructor( private http : HttpClient) { }
 
   //Metodo para subir la imagen 
-  uploadImage(credentials: { image: File }): Observable<Blob> {
+  uploadImage(credentials: { image: File } , email : string ): Observable<Blob> {
     const formData = new FormData();
     formData.append('image', credentials.image);
-    return this.http.post(this.uploadUrl, formData , {responseType : 'blob'});
+    const headers = { 'email': email }; // Agregar el email a los encabezados
+
+    return this.http.post(`${this.uploadUrl}`, formData , {headers,responseType : 'blob'});
   }
   
 }

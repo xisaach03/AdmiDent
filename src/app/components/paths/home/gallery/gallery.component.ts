@@ -33,9 +33,10 @@ export class GalleryComponent implements OnInit {
 
   //Estos son para poder modificar con dom dinámicamente los clientes:
   clients: any[] = [];
-  selectedClientId: string | null = null;
+  selectedClientId: string | null = '';
   inputName: string = '';
   inputLastname: string = '';
+  clientEmail : string  = '';
 
   constructor(private fileUpload: FileUploadService, private formBuilder: FormBuilder, private imgService: ImagesService, private clientService: ClientService, private router: Router) {
 
@@ -44,14 +45,6 @@ export class GalleryComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-      this.imgService.getImages().subscribe(
-        (data) => {
-          this.img = data
-        },
-        (error) => {
-          console.log('Error al cargar imagenes' , error)
-        }
-      )
       this.clientService.getClients().subscribe(
         (data) => {
           this.clients = Array.isArray(data) ? data : [];
@@ -72,17 +65,29 @@ export class GalleryComponent implements OnInit {
     if (this.form.valid) {
       const file = this.form.get('image')?.value;
       console.log('Imagen a subir:', file); // Verifica que el archivo está en el formulario
-
-      this.fileUpload.uploadImage(this.form.getRawValue()).subscribe({
+      console.log('soy el upload' , this.clientEmail)
+  
+      // Subir la imagen
+      this.fileUpload.uploadImage(this.form.getRawValue(), this.clientEmail).subscribe({
         next: (response) => {
           console.log(response); // Verifica la respuesta del servidor
-
-          // Opción 1: Actualizar toda la lista de imágenes desde el servicio
-          this.imgService.getImages().subscribe((updatedImages) => {
-            this.img = updatedImages;
-            console.log('Lista de imágenes actualizada:', this.img);
+  
+          // Recargar las imágenes del cliente después de la subida
+          this.clientService.getOneClient(this.selectedClientId).subscribe({
+            next: (data) => {
+              if (data && data.Images) {
+                this.img = data.Images; // Asocia las imágenes del cliente seleccionado
+                console.log(this.img); // Ver las imágenes del cliente
+              } else {
+                this.img = []; // Si no hay imágenes, inicializa como vacío
+                console.warn('No se encontraron imágenes para este cliente');
+              }
+            },
+            error: (err) => {
+              console.error('Error al obtener imágenes del cliente:', err);
+              this.img = []; // Manejo de errores, sin imágenes
+            }
           });
-
         },
         error: (err) => {
           console.log('Error al subir el archivo:', err);
@@ -92,6 +97,7 @@ export class GalleryComponent implements OnInit {
       console.log('Formulario no válido');
     }
   }
+  
 
 
   // Método para manejar el cambio de archivo
@@ -139,7 +145,28 @@ export class GalleryComponent implements OnInit {
     this.selectedClientId = client._id;
     this.inputName = client.firstName;
     this.inputLastname = client.lastName;
+    this.clientEmail = client.email;
+    console.log(this.clientEmail);
+  
+    // Obtén las imágenes del cliente cuando lo selecciones
+    this.clientService.getOneClient(this.selectedClientId).subscribe({
+      next: (data) => {
+        if (data && data.Images) {
+          this.img = data.Images; // Asocia las imágenes del cliente seleccionado
+          console.log(this.img);
+        } else {
+          this.img = []; // Si no hay imágenes, inicializa como vacío
+          console.warn('No se encontraron imágenes para este cliente');
+        }
+      },
+      error: (err) => {
+        console.error('Error al obtener imágenes del cliente:', err);
+        this.img = []; // Manejo de errores, sin imágenes
+      }
+    });
   }
+  
+
 
   goToGall() {
     this.router.navigate(['/gallery'])

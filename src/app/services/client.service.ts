@@ -18,6 +18,10 @@ export class ClientService {
     return this.http.get<any>(this.backUrl);
   }
 
+  getOneClient(id : any): Observable<any> {
+    return this.http.get<any>(`${this.backUrl}/${id}`);
+  }
+
   createClients( credentials : any ) : Observable<string>{
     return this.http.post<string>(this.backUrl , credentials ,{
       withCredentials: true // Esto asegura que las cookies se envíen con la solicitud
