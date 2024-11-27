@@ -1,4 +1,4 @@
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { WelcomeComponent } from './components/paths/welcome/welcome.component';
 import { LoginComponent } from './components/paths/login/login.component';
@@ -10,6 +10,7 @@ import { LADPatiensSumComponent } from './components/paths/home/ladpatiens-sum/l
 import { LADPatiensTreatmentComponent } from './components/paths/home/ladpatiens-treatment/ladpatiens-treatment.component';
 import { authGuard } from './guards/auth.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 export const routes: Routes = [
@@ -25,8 +26,16 @@ export const routes: Routes = [
     { path: '**', component: NotFoundComponent } 
 ]
 
+
+const routerOptions: ExtraOptions = {
+    useHash: true  // Establecer el uso de HashLocationStrategy
+  };
+  
+
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
+    providers : [{ provide : LocationStrategy , useClass : HashLocationStrategy
+    }],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }
