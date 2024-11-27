@@ -3,7 +3,7 @@ import { LADPatiensTreatmentComponent } from '../../paths/home/ladpatiens-treatm
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-edit-treatment',

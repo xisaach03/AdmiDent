@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment.development';
+import { environment } from '../../../../environments/environment';
 import { ClientService } from '../../../../services/client.service';
 import { Router } from '@angular/router';
 import { TreatmentModalService } from '../../../../services/treatment-modal.service';

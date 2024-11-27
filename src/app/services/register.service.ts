@@ -1,17 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { environment } from '../environments/environment.development';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
 
+  private readonly SERVER_URL = environment.apiUrl;
+
   constructor(private http: HttpClient) { }
 
   getUsers() {
-    return this.http.get<any>('http://localhost:3000/home');
+    return this.http.get<any>(`${this.SERVER_URL}/home`);
   }
 
   registrar(data : string) {

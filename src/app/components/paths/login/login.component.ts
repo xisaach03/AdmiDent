@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LoginService } from '../../../services/login.service'; 
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { MaterialModule } from '../../../modules/material/material.module';
 
 @Component({

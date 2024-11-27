@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SocketService {
   private socket: Socket | undefined
-  private readonly SERVER_URL = 'http://localhost:3000';
+  private readonly SERVER_URL = environment.apiUrl;
 
   constructor() { 
     if (typeof window === 'undefined') return;

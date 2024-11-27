@@ -232,57 +232,6 @@
         }
     }
 
-    .upload-section {
-        margin-top: 20px;
-        display: flex;
-        justify-content: flex-end;
-        align-items: flex-start;
-        gap: 20px;
-        flex-wrap: wrap;
-    }
-
-    .upload-box {
-        width: 200px;
-        height: 150px;
-        border: 2px dashed #ddd;
-        border-radius: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        color: #999;
-        cursor: pointer;
-        transition: all 0.3s ease;
-
-        &:hover {
-            border-color: #34747B;
-            color: #333;
-        }
-    }
-
-    .download-link {
-        color: #34747B;
-        text-decoration: underline;
-        cursor: pointer;
-        margin-top: 10px;
-
-        &:hover {
-            text-decoration: none;
-        }
-    }
-}
-
-button.upload-btn {
-    margin-top: 20px;
-    padding: 10px 15px;
-    background-color: #000;
-    color: white;
-    border: none;
-    cursor: pointer;
-
-    &:hover {
-        background-color: #333;
-    }
 }
 
 .treatment-history {
@@ -355,18 +304,4 @@ button.upload-btn {
         }
     }
 
-}
-
-.pagination {
-    display: flex;
-    justify-content: center;
-
-    button {
-        background-color: #e0e0e0;
-        padding: 0px 10px;
-        margin-left: 5px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
 }
