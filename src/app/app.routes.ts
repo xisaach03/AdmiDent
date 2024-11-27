@@ -27,15 +27,15 @@ export const routes: Routes = [
 ]
 
 
-const routerOptions: ExtraOptions = {
-    useHash: true  // Establecer el uso de HashLocationStrategy
-  };
+// const routerOptions: ExtraOptions = {
+//     useHash: true  // Establecer el uso de HashLocationStrategy
+//   };
   
 
-@NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    providers : [{ provide : LocationStrategy , useClass : HashLocationStrategy
-    }],
-    exports: [RouterModule]
-})
-export class AppRoutingModule { }
+// @NgModule({
+//     imports: [RouterModule.forRoot(routes)],
+//     providers : [{ provide : LocationStrategy , useClass : HashLocationStrategy
+//     }],
+//     exports: [RouterModule]
+// })
+// export class AppRoutingModule { }
