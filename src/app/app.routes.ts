@@ -14,14 +14,14 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-    { path: 'welcome', component: WelcomeComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'home', component: HomeComponent , canActivate : [authGuard]},
-    { path: 'summary', component: LADPatiensSumComponent, canActivate : [authGuard] },
-    { path: 'treatment', component: LADPatiensTreatmentComponent , canActivate : [authGuard]},
-    { path: 'gallery' , component: GalleryComponent , canActivate : [authGuard] },
-    { path: 'schedule' , component: ScheduleComponent , canActivate : [authGuard]},
+    { path: '/welcome', component: WelcomeComponent },
+    { path: '/login', component: LoginComponent },
+    { path: '/register', component: RegisterComponent },
+    { path: '/home', component: HomeComponent , canActivate : [authGuard]},
+    { path: '/summary', component: LADPatiensSumComponent, canActivate : [authGuard] },
+    { path: '/treatment', component: LADPatiensTreatmentComponent , canActivate : [authGuard]},
+    { path: '/gallery' , component: GalleryComponent , canActivate : [authGuard] },
+    { path: '/schedule' , component: ScheduleComponent , canActivate : [authGuard]},
     {path: '**', component: NotFoundComponent} 
 ]
 

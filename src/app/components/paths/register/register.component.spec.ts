@@ -1,9 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RegisterComponent } from './register.component';
 import { DebugElement } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { NavbarComponent } from '../../layout/navbar/navbar.component';
+import { ClientService } from '../../../services/client.service';
+import { NewUserComponent } from '../../layout/new-user/new-user.component';
+import { ImagesService } from '../../../services/images.service';
+import { HttpClient } from '@angular/common/http';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -13,7 +17,8 @@ describe('RegisterComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RegisterComponent],
-      imports: [ReactiveFormsModule]
+      imports: [ReactiveFormsModule, FormsModule, NavbarComponent, NewUserComponent],
+      providers: [ClientService, ImagesService, HttpClient]
     })
     .compileComponents();
   });
