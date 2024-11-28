@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } 
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { MaterialModule } from '../../../modules/material/material.module';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent {
   constructor(
     private loginService: LoginService, 
     private formBuilder: FormBuilder,
-    private router: Router 
+    private router: Router,
+    private cookieService: CookieService 
   ) {
     // Inicialización del formulario
     this.form = this.formBuilder.group({
@@ -33,14 +35,16 @@ export class LoginComponent {
     if (this.form.valid) {
       this.loginService.login(this.form.getRawValue()).subscribe({
         next: (response) => {
+          this.cookieService.set('user', response)
           //verifica si la respuesta es 'OK' por parte de la API gg
-          if (response === 'OK') {
+          // if (response) {
             console.log('Login exitoso:', response);
             this.router.navigate(['/home']); //redirección a home
-          } else {
-            console.error('Respuesta inesperada:', response);
-            alert('Error inesperado al iniciar sesión.');
-          }
+          // } 
+          // else {
+          //   console.error('Respuesta inesperada:', response);
+          //   alert('Error inesperado al iniciar sesión.');
+          // }
         },
         error: (err) => {
           if (err.status === 401) {
