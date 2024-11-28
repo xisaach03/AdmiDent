@@ -9,16 +9,20 @@ class MockImagesService {
   getImages = jasmine.createSpy('getImages').and.returnValue(of([]));
 }
 
-class MockFileUploadService {}
+class MockFileUploadService {
+  uploadImage = jasmine.createSpy('uploadImage').and.returnValue(of({}));
+}
 
 describe('GalleryComponent', () => {
   let component: GalleryComponent;
   let fixture: ComponentFixture<GalleryComponent>;
   let imagesService: ImagesService;
+  let fileUploadService: FileUploadService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, GalleryComponent],
+      imports: [ReactiveFormsModule],
+      declarations: [GalleryComponent],
       providers: [
         { provide: ImagesService, useClass: MockImagesService },
         { provide: FileUploadService, useClass: MockFileUploadService },
@@ -29,6 +33,7 @@ describe('GalleryComponent', () => {
     fixture = TestBed.createComponent(GalleryComponent);
     component = fixture.componentInstance;
     imagesService = TestBed.inject(ImagesService);
+    fileUploadService = TestBed.inject(FileUploadService);
     fixture.detectChanges();
   });
 
@@ -48,5 +53,26 @@ describe('GalleryComponent', () => {
     component.onFileChange(event);
 
     expect(component.form.get('image')?.value).toBe(mockFile);
+  });
+
+  it('should call uploadImage on form submission', () => {
+    const mockFile = new File(['test'], 'test.png', { type: 'image/png' });
+    component.form.patchValue({ image: mockFile });
+    const clientEmail = 'test@example.com';
+    component.clientEmail = clientEmail;
+
+    component.onSubmit();
+
+    expect(fileUploadService.uploadImage).toHaveBeenCalledWith(
+      component.form.getRawValue(),
+      clientEmail
+    );
+  });
+
+  it('should not submit if form is invalid', () => {
+    component.form.patchValue({ image: null });
+    component.onSubmit();
+
+    expect(fileUploadService.uploadImage).not.toHaveBeenCalled();
   });
 });
